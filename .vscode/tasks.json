@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "append_css",
+			"type": "shell",
+			"command": "echo \"\n/* Animations */\n@keyframes fadeInUp {\n  from {\n    opacity: 0;\n    transform: translateY(30px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n.fade-in-up {\n  animation: fadeInUp 1s ease forwards;\n  opacity: 0;\n}\n\n.delay-200 { animation-delay: 0.2s; }\n.delay-400 { animation-delay: 0.4s; }\n.delay-600 { animation-delay: 0.6s; }\n\n/* Scroll Reveal Animation */\n.reveal {\n  opacity: 0;\n  transform: translateY(30px);\n  transition: all 0.8s ease;\n}\n\n.reveal.active {\n  opacity: 1;\n  transform: translateY(0);\n}\n\" >> c:\\Users\\HP\\ucs\\style.css",
+			"args": [
+				"c:\\Users\\HP\\ucs\\style.css"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

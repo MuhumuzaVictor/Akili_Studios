@@ -1,0 +1,632 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Visual Storytelling Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Fonts removed -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* About Page Specific Styles */
+      .about-hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 20px;
+        text-align: center;
+        color: #fff;
+        background: linear-gradient(
+            to bottom,
+            rgba(26, 36, 53, 0.8),
+            rgba(26, 36, 53, 0.6)
+          ),
+          url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")
+            center / cover no-repeat;
+      }
+
+      .about-hero h1 {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        color: #fff;
+        font-weight: 700;
+      }
+
+      .about-hero p {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      /* How We Help - Panel Style */
+      .help-section {
+        padding: 100px 20px;
+        background: #fff;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+        color: var(--secondary-color);
+        margin-bottom: 15px;
+      }
+
+      .section-header p {
+        color: var(--text-light);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .help-gallery {
+        display: flex;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .help-panel {
+        position: relative;
+        flex: 1;
+        background-color: var(--bg-light);
+        cursor: pointer;
+        transition: flex 0.6s ease, background-color 0.3s ease;
+        border-right: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        overflow: hidden;
+      }
+
+      .help-panel:last-child {
+        border-right: none;
+      }
+
+      .help-panel:hover {
+        flex: 2;
+        background-color: var(--tertiary-color);
+      }
+
+      .help-panel.active {
+        flex: 3;
+        background-color: var(--secondary-color);
+        color: #fff;
+      }
+
+      .help-icon {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      .help-panel:hover .help-icon {
+        transform: scale(1.1);
+      }
+
+      .help-panel h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--secondary-color);
+        transition: color 0.3s ease;
+        white-space: nowrap;
+      }
+
+      .help-panel.active h3 {
+        color: #fff;
+      }
+
+      .help-panel p {
+        color: var(--text-light);
+        line-height: 1.6;
+        text-align: center;
+        max-width: 300px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+        position: absolute;
+        bottom: 40px;
+      }
+
+      .help-panel.active p {
+        opacity: 1;
+        transform: translateY(0);
+        color: rgba(255, 255, 255, 0.9);
+        position: relative;
+        bottom: auto;
+      }
+
+      /* Our Approach */
+      .approach-section {
+        padding: 100px 20px;
+        background: var(--secondary-color);
+        color: #fff;
+      }
+
+      .approach-section .section-header h2 {
+        color: #fff;
+      }
+
+      .approach-section .section-header p {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .approach-steps {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .step-card {
+        flex: 1;
+        min-width: 280px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 40px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .step-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        opacity: 0.5;
+        margin-bottom: 10px;
+      }
+
+      .step-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+      }
+
+      .step-card p {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+      }
+
+      /* Brand Logos */
+      .brands-section {
+        padding: 80px 0; /* Removed side padding to allow full width scroll */
+        background: #fff;
+        text-align: center;
+        overflow: hidden; /* Hide overflow */
+      }
+
+      .brands-track {
+        display: flex;
+        align-items: center;
+        gap: 80px;
+        width: max-content;
+        animation: scroll 30s linear infinite;
+      }
+
+      .brands-grid {
+        /* Keeping this for backward compatibility if needed, but we'll replace usage */
+        display: none;
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .brand-logo {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-light);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        white-space: nowrap;
+        opacity: 0.6;
+        transition: opacity 0.3s ease;
+      }
+
+      .brand-logo:hover {
+        opacity: 1;
+        color: var(--secondary-color);
+      }
+
+      /* Team Section */
+      .team-section {
+        padding: 100px 100px;
+        background: var(--bg-light);
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 0;
+
+        margin: 0 auto;
+      }
+
+      .team-card {
+        position: relative;
+        height: 450px;
+        background: #000;
+        border-radius: 0;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .team-img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .team-card:hover .team-img {
+        transform: scale(1.1);
+      }
+
+      .team-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 60px 20px 30px;
+        text-align: center;
+        background: linear-gradient(
+          to top,
+          rgba(26, 36, 53, 0.95),
+          transparent
+        );
+        z-index: 2;
+      }
+
+      .team-info h3 {
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+        color: #fff;
+      }
+
+      .team-info p {
+        color: var(--primary-color);
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      /* CTA Section (Dark Blue) */
+      .cta-section {
+        padding: 100px 20px;
+        text-align: center;
+        background-color: var(--secondary-color);
+        color: #fff;
+      }
+
+      .cta-section .cta-title {
+        color: #fff;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .cta-section .cta-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/Akili studios black.png" alt="Logo" />
+        </a>
+      </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="index.html"
+            ><i class="fas fa-home"></i
+            ><span class="mobile-home-text">Home</span></a
+          >
+        </li>
+        <li class="dropdown">
+          <a href="index.html#services"
+            >Services
+            <i
+              class="fas fa-chevron-down"
+              style="font-size: 0.8em; margin-left: 5px"
+            ></i
+          ></a>
+          <ul class="dropdown-menu">
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li>
+              <a href="digital-marketing.html">Digital Marketing</a>
+            </li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </li>
+        <li><a href="our-work.html">Our Work</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="mobile-only"><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+      <h1>We Are Visual Storytellers</h1>
+      <p>
+        We believe that every brand has a unique story waiting to be told. Our
+        mission is to bring those stories to life through compelling imagery and
+        strategic design.
+      </p>
+    </section>
+
+    <!-- How We Help Brands -->
+    <section class="help-section">
+      <div class="section-header">
+        <h2>How We Help Brands</h2>
+        <p>
+          We combine creativity with strategy to elevate your brand presence.
+        </p>
+      </div>
+      <div class="help-gallery">
+        <div class="help-panel active">
+          <div class="help-icon"><i class="fas fa-lightbulb"></i></div>
+          <h3>Brand Strategy</h3>
+          <p>
+            We define your unique voice and positioning to ensure your message
+            resonates with the right audience.
+          </p>
+        </div>
+        <div class="help-panel">
+          <div class="help-icon"><i class="fas fa-camera"></i></div>
+          <h3>Visual Content</h3>
+          <p>
+            From photography to videography, we create high-quality assets that
+            capture the essence of your brand.
+          </p>
+        </div>
+        <div class="help-panel">
+          <div class="help-icon"><i class="fas fa-rocket"></i></div>
+          <h3>Digital Growth</h3>
+          <p>
+            We help you reach more customers through targeted digital marketing
+            and social media strategies.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Approach -->
+    <section class="approach-section">
+      <div class="section-header">
+        <h2>Our Approach</h2>
+        <p>A collaborative process designed to deliver exceptional results.</p>
+      </div>
+      <div class="approach-steps">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3>Discover</h3>
+          <p>
+            We start by listening. Understanding your goals, audience, and
+            challenges is the foundation of our work.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3>Create</h3>
+          <p>
+            Our team of creatives gets to work, crafting concepts and producing
+            content that aligns with your vision.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3>Deliver</h3>
+          <p>
+            We refine and polish every detail, delivering final assets that are
+            ready to make an impact.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand Logos -->
+    <section class="brands-section">
+      <div class="section-header">
+        <h2>Trusted By</h2>
+      </div>
+      <div class="brands-track">
+        <!-- First Set -->
+        <div class="brand-logo"><i class="fab fa-google"></i> Google</div>
+        <div class="brand-logo"><i class="fab fa-amazon"></i> Amazon</div>
+        <div class="brand-logo"><i class="fab fa-spotify"></i> Spotify</div>
+        <div class="brand-logo"><i class="fab fa-airbnb"></i> Airbnb</div>
+        <div class="brand-logo"><i class="fab fa-uber"></i> Uber</div>
+        <div class="brand-logo"><i class="fab fa-microsoft"></i> Microsoft</div>
+        <div class="brand-logo"><i class="fab fa-apple"></i> Apple</div>
+
+        <!-- Duplicate Set for Infinite Scroll -->
+        <div class="brand-logo"><i class="fab fa-google"></i> Google</div>
+        <div class="brand-logo"><i class="fab fa-amazon"></i> Amazon</div>
+        <div class="brand-logo"><i class="fab fa-spotify"></i> Spotify</div>
+        <div class="brand-logo"><i class="fab fa-airbnb"></i> Airbnb</div>
+        <div class="brand-logo"><i class="fab fa-uber"></i> Uber</div>
+        <div class="brand-logo"><i class="fab fa-microsoft"></i> Microsoft</div>
+        <div class="brand-logo"><i class="fab fa-apple"></i> Apple</div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+      <div class="section-header">
+        <h2>Meet the Team</h2>
+        <p>The creative minds behind the craft.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <img
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Team Member"
+            class="team-img"
+          />
+          <div class="team-info">
+            <h3>Alex Morgan</h3>
+            <p>Creative Director</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Team Member"
+            class="team-img"
+          />
+          <div class="team-info">
+            <h3>Sarah Jenkins</h3>
+            <p>Lead Photographer</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img
+            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Team Member"
+            class="team-img"
+          />
+          <div class="team-info">
+            <h3>David Chen</h3>
+            <p>Videographer</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img
+            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Team Member"
+            class="team-img"
+          />
+          <div class="team-info">
+            <h3>Emily Ross</h3>
+            <p>Marketing Strategist</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <h2 class="cta-title">Ready to start your project?</h2>
+      <p class="cta-subtitle">Let's collaborate and build something amazing.</p>
+      <div class="cta-buttons">
+        <a href="index.html#contact" class="btn-primary">Get in Touch</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom: 20px">
+            <a href="index.html">
+              <img src="images/Akili studios white.png" alt="Logo" />
+            </a>
+          </div>
+          <p>
+            Capturing authentic stories through crafted visuals from portraits
+            to moments that matter.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li>
+              <a href="digital-marketing.html">Digital Marketing</a>
+            </li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#careers">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html#privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Get in Touch</h4>
+          <p>sales@akilistudios.com</p>
+          <p>+256 761 656330<br />+256 784 247255<br />+256 700 228495</p>
+          <div class="social-links">
+            <a href="#" target="_blank"
+              ><img src="images/instagram.png" alt="Instagram"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/tik-tok.png" alt="TikTok"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/pinterest.png" alt="Pinterest"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/behance.png" alt="Behance"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/whatsapp.png" alt="WhatsApp"
+            /></a>
+          </div>
+          <p style="margin-top: 15px; font-size: 0.9rem; color: #aaa">
+            akilistudios
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Akili Studios. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      const panels = document.querySelectorAll(".help-panel");
+
+      panels.forEach((panel) => {
+        panel.addEventListener("click", () => {
+          removeActiveClasses();
+          panel.classList.add("active");
+        });
+      });
+
+      function removeActiveClasses() {
+        panels.forEach((panel) => {
+          panel.classList.remove("active");
+        });
+      }
+    </script>
+    <script src="Home.js"></script>
+  </body>
+</html>

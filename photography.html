@@ -1,0 +1,880 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photography - Visual Storytelling Portfolio</title>
+
+    <!-- Fonts removed -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* Photography Page Specific Styles */
+
+      /* ================= HERO ================= */
+      .photography-hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 0 100px;
+        color: #fff;
+        background: linear-gradient(
+            to right,
+            rgba(26, 36, 53, 0.9),
+            rgba(26, 36, 53, 0.7),
+            rgba(0, 0, 0, 0.1)
+          ),
+          url("https://images.unsplash.com/photo-1607082349566-1870c1b4c07c?q=80&w=2000&auto=format&fit=crop")
+            center / cover no-repeat;
+      }
+
+      .hero-content {
+        max-width: 650px;
+      }
+
+      .hero-content h1 {
+        font-size: 4rem;
+        margin-bottom: 20px;
+      }
+
+      .hero-content p {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      .hero-tags {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 35px;
+      }
+
+      .hero-tags span {
+        padding: 8px 16px;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        font-size: 0.85rem;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .hero-btn {
+        display: inline-block;
+        padding: 14px 34px;
+        background: var(--primary-color);
+        color: #fff;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      /* =====================================================
+         AIRBUS-STYLE GALLERY (ONLY CHANGE)
+      ===================================================== */
+      .panel-gallery {
+        display: flex;
+        width: 100%;
+        height: 600px;
+        overflow: hidden;
+      }
+
+      .panel {
+        position: relative;
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
+        transition: flex 0.6s ease;
+      }
+
+      .panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        transition: background 0.3s ease;
+      }
+
+      .panel:hover {
+        flex: 1.35;
+      }
+
+      .panel:hover::before {
+        background: rgba(0, 0, 0, 0.25);
+      }
+
+      .panel-content {
+        position: absolute;
+        inset: 0;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        color: #fff;
+        z-index: 2;
+      }
+
+      .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .panel-title {
+        font-size: 1.6rem;
+        font-weight: 600;
+      }
+
+      .panel-plus {
+        font-size: 2rem;
+        font-weight: 300;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .panel.active .panel-plus {
+        transform: rotate(45deg);
+      }
+
+      .panel-body {
+        flex: 0;
+        overflow: hidden;
+        transition: flex 0.5s ease, opacity 0.5s ease, margin-top 0.5s ease,
+          padding 0.5s ease;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(5px);
+        border-radius: 8px;
+        margin-top: 0;
+        padding: 0;
+      }
+
+      .panel.active .panel-body {
+        flex: 1;
+        opacity: 1;
+        padding: 15px;
+        margin-top: 15px;
+      }
+
+      .panel-body p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      /* ================= PRICING ================= */
+      .pricing-section {
+        padding: 100px 20px;
+        background: #fff;
+        text-align: center;
+      }
+
+      .pricing-header h2 {
+        font-size: 2.6rem;
+        margin-bottom: 10px;
+      }
+
+      .pricing-header p {
+        color: var(--text-light);
+        max-width: 600px;
+        margin: 0 auto 60px;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .pricing-card {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 40px 30px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        position: relative;
+        transition: transform 0.3s ease;
+        border: 1px solid #eee;
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-8px);
+      }
+
+      .pricing-card.featured {
+        border: 2px solid var(--primary-color);
+        transform: translateY(-15px);
+      }
+
+      .pricing-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+      }
+
+      .price {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin: 15px 0;
+        color: var(--secondary-color);
+      }
+
+      .price span {
+        font-size: 1rem;
+        color: var(--text-light);
+        font-weight: 400;
+      }
+
+      .pricing-features {
+        list-style: none;
+        margin: 30px 0;
+        text-align: left;
+      }
+
+      .pricing-features li {
+        margin-bottom: 12px;
+        color: var(--text-light);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .pricing-features li i {
+        color: var(--primary-color);
+        font-size: 0.9rem;
+      }
+
+      .pricing-btn {
+        display: inline-block;
+        padding: 14px 28px;
+        border-radius: 50px;
+        border: 1.5px solid var(--primary-color);
+        color: var(--primary-color);
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .pricing-card.featured .pricing-btn {
+        background: var(--primary-color);
+        color: #fff;
+      }
+
+      .pricing-btn:hover {
+        opacity: 0.9;
+        background: var(--primary-color);
+        color: #fff;
+      }
+
+      @media (max-width: 900px) {
+        .pricing-card.featured {
+          transform: none;
+        }
+      }
+
+      /* ================= CTA & FOOTER (UNCHANGED) ================= */
+      .cta-section {
+        padding: 100px 20px;
+        text-align: center;
+        background-color: var(--secondary-color);
+        color: #fff;
+      }
+
+      .cta-section .cta-title {
+        color: #fff;
+      }
+
+      .cta-section .cta-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      @media (max-width: 900px) {
+        .panel-gallery {
+          flex-direction: column;
+          height: auto;
+        }
+
+        .panel {
+          height: 300px;
+        }
+
+        .photography-hero {
+          padding: 0 40px;
+        }
+      }
+
+      /* ================= FULL GALLERY GRID ================= */
+      .full-gallery-section {
+        padding: 100px 100px;
+        background: #fff;
+      }
+
+      .full-gallery-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .full-gallery-header h2 {
+        font-size: 2.8rem;
+        margin-bottom: 15px;
+        color: var(--secondary-color);
+      }
+
+      .full-gallery-header p {
+        color: var(--text-light);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .masonry-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        max-width: 1400px;
+        margin: 0 auto;
+        grid-auto-flow: dense; /* Helps fill gaps */
+      }
+
+      .masonry-item {
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        height: 300px; /* Base height */
+      }
+
+      /* Create variety while maintaining grid alignment */
+      .masonry-item:nth-child(1),
+      .masonry-item:nth-child(7),
+      .masonry-item:nth-child(11) {
+        grid-column: span 2;
+      }
+
+      .masonry-item:nth-child(3),
+      .masonry-item:nth-child(8) {
+        grid-row: span 2;
+        height: 624px; /* (300 * 2) + 24 gap */
+      }
+
+      .masonry-item img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        border-radius: 16px;
+        transition: transform 0.5s ease;
+      }
+
+      .masonry-item:hover img {
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 1024px) {
+        .masonry-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .masonry-grid {
+          grid-template-columns: 1fr;
+        }
+        .masonry-item:nth-child(n) {
+          grid-column: auto;
+          grid-row: auto;
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/Akili studios black.png" alt="Logo" />
+        </a>
+      </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="index.html"
+            ><i class="fas fa-home"></i
+            ><span class="mobile-home-text">Home</span></a
+          >
+        </li>
+        <li class="dropdown">
+          <a href="#services"
+            >Services
+            <i
+              class="fas fa-chevron-down"
+              style="font-size: 0.8em; margin-left: 5px"
+            ></i
+          ></a>
+          <ul class="dropdown-menu">
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li>
+              <a href="digital-marketing.html">Digital Marketing</a>
+            </li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </li>
+        <li><a href="our-work.html">Our Work</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="mobile-only"><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="photography-hero">
+      <div class="hero-content">
+        <h1>Capturing Moments</h1>
+        <p>
+          Explore our portfolio of stunning photography, from corporate
+          headshots to breathtaking drone shots.
+        </p>
+        <div class="hero-tags">
+          <span>Corporate</span>
+          <span>Event</span>
+          <span>Product</span>
+          <span>Storytelling</span>
+          <span>Drone</span>
+        </div>
+        <a href="#selected-works" class="hero-btn">View Gallery</a>
+      </div>
+    </section>
+
+    <!-- GALLERY (UPDATED ONLY) -->
+    <section class="panel-gallery" id="gallery">
+      <div
+        class="panel fade-in-up"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7');
+        "
+      >
+        <div class="panel-content">
+          <div class="panel-header">
+            <div class="panel-title">Corporate</div>
+            <div class="panel-plus">+</div>
+          </div>
+          <div class="panel-body">
+            <p>
+              Professional headshots and branding photography that captures your
+              unique business identity.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="panel fade-in-up"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1511578314322-379afb476865');
+        "
+      >
+        <div class="panel-content">
+          <div class="panel-header">
+            <div class="panel-title">Events</div>
+            <div class="panel-plus">+</div>
+          </div>
+          <div class="panel-body">
+            <p>
+              Capturing the energy and key moments of your conferences, parties,
+              and special gatherings.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="panel fade-in-up"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32');
+        "
+      >
+        <div class="panel-content">
+          <div class="panel-header">
+            <div class="panel-title">Storytelling</div>
+            <div class="panel-plus">+</div>
+          </div>
+          <div class="panel-body">
+            <p>
+              Visual narratives that tell compelling stories through a series of
+              emotive and candid images.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="panel fade-in-up"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1473968512647-3e447244af8f');
+        "
+      >
+        <div class="panel-content">
+          <div class="panel-header">
+            <div class="panel-title">Drone</div>
+            <div class="panel-plus">+</div>
+          </div>
+          <div class="panel-body">
+            <p>
+              Breathtaking aerial perspectives that add a cinematic dimension to
+              your visual content.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="panel fade-in-up"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30');
+        "
+      >
+        <div class="panel-content">
+          <div class="panel-header">
+            <div class="panel-title">Product</div>
+            <div class="panel-plus">+</div>
+          </div>
+          <div class="panel-body">
+            <p>
+              High-quality commercial photography designed to showcase your
+              products in the best light.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing-section">
+      <div class="pricing-header">
+        <h2>Investment</h2>
+        <p>Transparent pricing packages designed to fit your specific needs.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Basic Package -->
+        <div class="pricing-card">
+          <h3>Essential</h3>
+          <div class="price">$299<span>/session</span></div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> 1 Hour Session</li>
+            <li><i class="fas fa-check"></i> 15 Edited Photos</li>
+            <li><i class="fas fa-check"></i> Online Gallery</li>
+            <li><i class="fas fa-check"></i> Print Release</li>
+          </ul>
+          <a href="index.html#contact" class="pricing-btn">Choose Essential</a>
+        </div>
+
+        <!-- Standard Package -->
+        <div class="pricing-card featured">
+          <h3>Professional</h3>
+          <div class="price">$599<span>/session</span></div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> 2 Hour Session</li>
+            <li><i class="fas fa-check"></i> 35 Edited Photos</li>
+            <li><i class="fas fa-check"></i> Online Gallery</li>
+            <li><i class="fas fa-check"></i> Print Release</li>
+            <li><i class="fas fa-check"></i> 1 Location Change</li>
+          </ul>
+          <a href="index.html#contact" class="pricing-btn"
+            >Choose Professional</a
+          >
+        </div>
+
+        <!-- Premium Package -->
+        <div class="pricing-card">
+          <h3>Premium</h3>
+          <div class="price">$999<span>/session</span></div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> 4 Hour Session</li>
+            <li><i class="fas fa-check"></i> 60+ Edited Photos</li>
+            <li><i class="fas fa-check"></i> Online Gallery</li>
+            <li><i class="fas fa-check"></i> Print Release</li>
+            <li><i class="fas fa-check"></i> Multiple Locations</li>
+            <li><i class="fas fa-check"></i> Drone Coverage</li>
+          </ul>
+          <a href="index.html#contact" class="pricing-btn">Choose Premium</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <h2 class="cta-title">Ready to capture your story?</h2>
+      <p class="cta-subtitle">Let's create something beautiful together.</p>
+      <div class="cta-buttons">
+        <a href="index.html#contact" class="btn-primary">Book a Session</a>
+      </div>
+    </section>
+
+    <!-- Full Gallery Section -->
+    <section class="full-gallery-section" id="selected-works">
+      <div class="full-gallery-header">
+        <h2>Selected Works</h2>
+        <p>
+          A curated collection of our favorite moments captured through the
+          lens.
+        </p>
+      </div>
+
+      <div class="masonry-grid">
+        <!-- Portrait -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Portrait"
+          />
+        </div>
+
+        <!-- Landscape -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Landscape"
+          />
+        </div>
+
+        <!-- Tall Portrait -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Tall Portrait"
+          />
+        </div>
+
+        <!-- Square -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Square"
+          />
+        </div>
+
+        <!-- Landscape -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Fashion"
+          />
+        </div>
+
+        <!-- Portrait -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Male Portrait"
+          />
+        </div>
+
+        <!-- Landscape -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Nature"
+          />
+        </div>
+
+        <!-- Tall -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Work"
+          />
+        </div>
+
+        <!-- Square -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Motorcycle"
+          />
+        </div>
+
+        <!-- Portrait -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1534083264897-aeabfc750150?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Watch"
+          />
+        </div>
+
+        <!-- Landscape -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Food"
+          />
+        </div>
+
+        <!-- Tall -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Fashion Model"
+          />
+        </div>
+
+        <!-- Square -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1520390138845-fd2d229dd552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Wedding"
+          />
+        </div>
+
+        <!-- Architecture -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Architecture"
+          />
+        </div>
+
+        <!-- Street -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1478186172006-0253d2743e58?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Street Photography"
+          />
+        </div>
+
+        <!-- Concert -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1459749411177-0473ef7161a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Concert"
+          />
+        </div>
+
+        <!-- Travel -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Travel"
+          />
+        </div>
+
+        <!-- Abstract -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Abstract"
+          />
+        </div>
+
+        <!-- Lifestyle -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Lifestyle"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom: 20px">
+            <a href="index.html">
+              <img src="images/Akili studios white.png" alt="Logo" />
+            </a>
+          </div>
+          <p>
+            Capturing authentic stories through crafted visuals from portraits
+            to moments that matter.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li>
+              <a href="digital-marketing.html">Digital Marketing</a>
+            </li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#careers">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html#privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Get in Touch</h4>
+          <p>sales@akilistudios.com</p>
+          <p>+256 761 656330<br />+256 784 247255<br />+256 700 228495</p>
+          <div class="social-links">
+            <a href="#" target="_blank"
+              ><img src="images/instagram.png" alt="Instagram"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/tik-tok.png" alt="TikTok"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/pinterest.png" alt="Pinterest"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/behance.png" alt="Behance"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/whatsapp.png" alt="WhatsApp"
+            /></a>
+          </div>
+          <p style="margin-top: 15px; font-size: 0.9rem; color: #aaa">
+            akilistudios
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Akili Studios. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="Home.js"></script>
+    <script>
+      // Gallery Panel Interaction
+      document.querySelectorAll(".panel-plus").forEach((plus) => {
+        plus.addEventListener("click", (e) => {
+          e.stopPropagation(); // Prevent panel click if any
+          const panel = plus.closest(".panel");
+
+          // Close other panels
+          document.querySelectorAll(".panel").forEach((p) => {
+            if (p !== panel) p.classList.remove("active");
+          });
+
+          // Toggle current panel
+          panel.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,854 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visual Storytelling Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Fonts removed -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/Akili studios black.png" alt="Logo" />
+        </a>
+      </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#home"
+            ><i class="fas fa-home"></i
+            ><span class="mobile-home-text">Home</span></a
+          >
+        </li>
+        <li class="dropdown">
+          <a href="#services"
+            >Services
+            <i
+              class="fas fa-chevron-down"
+              style="font-size: 0.8em; margin-left: 5px"
+            ></i
+          ></a>
+          <ul class="dropdown-menu">
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li><a href="digital-marketing.html">Digital Marketing</a></li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </li>
+        <li><a href="our-work.html">Our Work</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="mobile-only"><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+      <div class="hero-content">
+        <h1 class="fade-in-up">Where Every Image<br />Tells a Story</h1>
+        <p class="hero-subtext fade-in-up delay-200">
+          Capturing authentic stories through crafted visuals from portraits to
+          moments that matter.
+        </p>
+
+        <!-- Photoshop -->
+        <div class="floating-icon icon-ps">
+          <img
+            src="images/photoshop.png"
+            alt="Photoshop"
+            width="50"
+            height="50"
+          />
+        </div>
+
+        <!-- Illustrator -->
+        <div class="floating-icon icon-ai">
+          <img
+            src="images/illustrator.png"
+            alt="Illustrator"
+            width="50"
+            height="50"
+          />
+        </div>
+
+        <!-- Premiere Pro -->
+        <div class="floating-icon icon-pr">
+          <img
+            src="images/premiere-pro.png"
+            alt="Premiere Pro"
+            width="50"
+            height="50"
+          />
+        </div>
+
+        <!-- After Effects -->
+        <div class="floating-icon icon-ae">
+          <img
+            src="images/after-effects.png"
+            alt="After Effects"
+            width="50"
+            height="50"
+          />
+        </div>
+
+        <!-- Lightroom -->
+        <div class="floating-icon icon-lr">
+          <img
+            src="images/lightroom.png"
+            alt="Lightroom"
+            width="50"
+            height="50"
+          />
+        </div>
+
+        <!-- Figma -->
+        <div class="floating-icon icon-figma">
+          <img src="images/figma.png" alt="Figma" width="50" height="50" />
+        </div>
+
+        <a href="our-work.html" class="btn btn-outline fade-in-up delay-400"
+          >View Work</a
+        >
+      </div>
+
+      <!-- Curved Image Gallery -->
+      <div class="hero-gallery">
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+            alt="Gallery 1"
+          />
+        </div>
+        <div class="gallery-item middle">
+          <img
+            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+            alt="Gallery 2"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+            alt="Gallery 3"
+          />
+        </div>
+      </div>
+    </header>
+
+    <!-- Brand Logos -->
+    <section class="brands-section">
+      <div class="section-header" style="margin-bottom: 40px">
+        <h2 class="reveal">Trusted By</h2>
+      </div>
+      <div class="brands-track">
+        <!-- First Set -->
+        <div class="brand-logo"><i class="fab fa-google"></i> Google</div>
+        <div class="brand-logo"><i class="fab fa-amazon"></i> Amazon</div>
+        <div class="brand-logo"><i class="fab fa-spotify"></i> Spotify</div>
+        <div class="brand-logo"><i class="fab fa-airbnb"></i> Airbnb</div>
+        <div class="brand-logo"><i class="fab fa-uber"></i> Uber</div>
+        <div class="brand-logo"><i class="fab fa-microsoft"></i> Microsoft</div>
+        <div class="brand-logo"><i class="fab fa-apple"></i> Apple</div>
+
+        <!-- Duplicate Set for Infinite Scroll -->
+        <div class="brand-logo"><i class="fab fa-google"></i> Google</div>
+        <div class="brand-logo"><i class="fab fa-amazon"></i> Amazon</div>
+        <div class="brand-logo"><i class="fab fa-spotify"></i> Spotify</div>
+        <div class="brand-logo"><i class="fab fa-airbnb"></i> Airbnb</div>
+        <div class="brand-logo"><i class="fab fa-uber"></i> Uber</div>
+        <div class="brand-logo"><i class="fab fa-microsoft"></i> Microsoft</div>
+        <div class="brand-logo"><i class="fab fa-apple"></i> Apple</div>
+      </div>
+    </section>
+
+    <!-- Stats Section with Background Image -->
+    <section class="stats-image-section">
+      <div class="container">
+        <div class="stats-image-content">
+          <div class="stats-text">
+            <h2 class="reveal">
+              Since 2021, we've helped brands grow with clarity and confidence
+            </h2>
+          </div>
+          <div class="stats-cards">
+            <div class="stat-card">
+              <div class="stat-number" data-target="100">
+                <span class="count">0</span><span class="suffix">+</span>
+              </div>
+              <div class="stat-label">Brands scaled</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-target="35">
+                <span class="count">0</span><span class="suffix">+</span>
+              </div>
+              <div class="stat-label">Industries served</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-target="94">
+                <span class="count">0</span><span class="suffix">+</span>
+              </div>
+              <div class="stat-label">Brands engaged</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-target="91">
+                <span class="count">0</span><span class="suffix">+</span>
+              </div>
+              <div class="stat-label">Client satisfied</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!----------------------------------------------- */ 
+    /* PROJECTS SECTION */
+    /* ----------------------------------------------->
+    <section class="projects-section">
+      <span class="projects-pill">Projects</span>
+
+      <div class="projects-title-btn-wrapper">
+        <h2 class="projects-title reveal">
+          Here’s how we turn<br />
+          vision into thoughtful<br />
+          design and strategy
+        </h2>
+        <a href="projects.html" class="projects-btn">All Projects</a>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="images/FH7A8872.jpg" alt="Project Image" />
+          </div>
+          <div class="project-footer">
+            <span class="project-name">Driplo</span>
+            <span class="project-tag">Brand Refresh</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="images/FH7A8872.jpg" alt="Project Image" />
+          </div>
+          <div class="project-footer">
+            <span class="project-name">Nestrow</span>
+            <span class="project-tag">Brand Strategy</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!----------------------------------------------- */ 
+    /* SERVICES SECTION */
+    /* ----------------------------------------------->
+
+    <section class="services-section">
+      <div class="services-inner">
+        <span class="services-pill">Services</span>
+
+        <h2 class="services-title reveal">What we do</h2>
+
+        <p class="services-subtitle">
+          We donâ€™t just design brandsâ€”we build identities that cut through
+          noise, spark connection, and drive lasting impact
+        </p>
+
+        <button class="services-cta">Schedule a Call</button>
+
+        <!-- Service 1: Photography -->
+        <div class="service-item open">
+          <div class="service-header">
+            <div class="service-left">
+              <span class="service-number">01</span>
+              <span class="service-name">Photography</span>
+            </div>
+            <button class="accordion-btn"></button>
+          </div>
+
+          <div class="service-content">
+            <div class="service-main">
+              <p class="service-description">
+                Explore our portfolio of stunning photography, from corporate
+                headshots to breathtaking drone shots. We capture authentic
+                moments that tell your brand's story.
+              </p>
+            </div>
+            <div class="service-tags">
+              <span>Corporate</span>
+              <span>Events</span>
+              <span>Storytelling</span>
+              <span>Drone</span>
+              <span>Product</span>
+            </div>
+            <div style="margin-top: 15px">
+              <a
+                href="photography.html"
+                style="
+                  text-decoration: none;
+                  font-weight: 500;
+                  font-size: 0.9rem;
+                "
+                >View Service &rarr;</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <!-- Service 2: Videography -->
+        <div class="service-item collapsed">
+          <div class="service-header">
+            <div class="service-left">
+              <span class="service-number">02</span>
+              <span class="service-name">Videography</span>
+            </div>
+            <button class="accordion-btn"></button>
+          </div>
+
+          <div class="service-content">
+            <div class="service-main">
+              <p class="service-description">
+                Capturing motion and emotion to tell your story with
+                professional video production. From high-impact ads to
+                narrative-driven documentaries.
+              </p>
+            </div>
+            <div class="service-tags">
+              <span>Video Ads & Promo</span>
+              <span>Documentary & Storytelling</span>
+              <span>Intros & Outros</span>
+              <span>Product Ads</span>
+            </div>
+            <div style="margin-top: 15px">
+              <a
+                href="videography.html"
+                style="
+                  text-decoration: none;
+                  font-weight: 500;
+                  font-size: 0.9rem;
+                "
+                >View Service &rarr;</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <!-- Service 3: Creative -->
+        <div class="service-item collapsed">
+          <div class="service-header">
+            <div class="service-left">
+              <span class="service-number">03</span>
+              <span class="service-name">Creative</span>
+            </div>
+            <button class="accordion-btn"></button>
+          </div>
+
+          <div class="service-content">
+            <div class="service-main">
+              <p class="service-description">
+                Comprehensive design solutions tailored to elevate your brand's
+                visual identity. We build memorable and cohesive brand systems.
+              </p>
+            </div>
+            <div class="service-tags">
+              <span>Branding & Design</span>
+              <span>Marketing Collateral</span>
+              <span>Logo Design</span>
+              <span>Corporate Identity</span>
+              <span>Social Media</span>
+              <span>Video Ads</span>
+              <span>Brand Strategy</span>
+            </div>
+            <div style="margin-top: 15px">
+              <a
+                href="creative.html"
+                style="
+                  text-decoration: none;
+                  font-weight: 500;
+                  font-size: 0.9rem;
+                "
+                >View Service &rarr;</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <!-- Service 4: Digital Marketing -->
+        <div class="service-item collapsed">
+          <div class="service-header">
+            <div class="service-left">
+              <span class="service-number">04</span>
+              <span class="service-name">Digital Marketing</span>
+            </div>
+            <button class="accordion-btn"></button>
+          </div>
+
+          <div class="service-content">
+            <div class="service-main">
+              <p class="service-description">
+                We build and execute digital campaigns that drive visibility,
+                engagement, and results. Our strategies combine creativity,
+                analytics, and modern tools.
+              </p>
+            </div>
+            <div class="service-tags">
+              <span>Influencer Marketing</span>
+              <span>Social Media Strategy</span>
+              <span>Paid Advertising</span>
+              <span>SEO</span>
+              <span>Email & Automation</span>
+              <span>Analytics & Reporting</span>
+            </div>
+            <div style="margin-top: 15px">
+              <a
+                href="digital-marketing.html"
+                style="
+                  text-decoration: none;
+                  font-weight: 500;
+                  font-size: 0.9rem;
+                "
+                >View Service &rarr;</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <!-- Service 5: Technology -->
+        <div class="service-item collapsed">
+          <div class="service-header">
+            <div class="service-left">
+              <span class="service-number">05</span>
+              <span class="service-name">Technology</span>
+            </div>
+            <button class="accordion-btn"></button>
+          </div>
+
+          <div class="service-content">
+            <div class="service-main">
+              <p class="service-description">
+                Innovative solutions for the digital age. We design and build
+                technology that empowers businesses to operate efficiently and
+                scale faster.
+              </p>
+            </div>
+            <div class="service-tags">
+              <span>Web & Software Dev</span>
+              <span>Website Design</span>
+              <span>E-commerce</span>
+              <span>Mobile Apps</span>
+              <span>UI/UX Design</span>
+              <span>+more</span>
+            </div>
+            <div style="margin-top: 15px">
+              <a
+                href="technology.html"
+                style="
+                  text-decoration: none;
+                  font-weight: 500;
+                  font-size: 0.9rem;
+                "
+                >View Service &rarr;</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider" />
+      </div>
+    </section>
+
+    <!----------------------------------------------- */ 
+    /* TESTIMONIAL SECTION */
+    /* ----------------------------------------------->
+    <section class="testimonial-section">
+      <div class="testimonial-inner">
+        <span class="testimonial-pill">Testimonial</span>
+
+        <h2 class="testimonial-title reveal">
+          Trusted by<br />ambitious brands
+        </h2>
+
+        <p class="testimonial-subtitle">
+          Real stories from real partners whoâ€™ve turned vision into results
+          with usâ€”strategically, creatively, and collaboratively
+        </p>
+
+        <div class="testimonial-grid">
+          <!-- Card 1 - Large Highlight -->
+          <div class="testimonial-card testimonial-large">
+            <img
+              class="testimonial-image"
+              src="images/FH7A8872.jpg"
+              alt="Client"
+            />
+
+            <p class="testimonial-text">
+              â€œWorking with this team was a game-changer. The strategy, the
+              visuals, the attention to detailâ€”it all came together
+              beautifully. We finally feel proud of how we show up.â€
+            </p>
+
+            <p class="testimonial-author">
+              Theo Gardner &nbsp;âœ¦&nbsp; Founder at North & Nest
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="testimonial-card">
+            <div class="testimonial-author-row">
+              <img src="images/FH7A8872.jpg" class="author-avatar" />
+            </div>
+            <p class="testimonial-text">
+              â€œFrom day one, they just got us. The brand we launched is bold,
+              fresh, and exactly what we needed to stand out. Our audience
+              responded instantly.â€
+            </p>
+            <p class="testimonial-author">
+              Lila Monroe<br />
+              Founder at Evolve Skincare
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="testimonial-card">
+            <div class="testimonial-author-row">
+              <img src="images/FH7A8872.jpg" class="author-avatar" />
+            </div>
+            <p class="testimonial-text">
+              â€œThey didnâ€™t just design a logoâ€”they built a brand we
+              believe in. Everything feels intentional and perfectly aligned
+              with our mission.â€
+            </p>
+            <p class="testimonial-author">
+              Maya Chen<br />
+              Creative Director at Grove
+            </p>
+          </div>
+        </div>
+        <div class="testimonial-grid">
+          <!-- Card 2 -->
+          <div class="testimonial-card">
+            <div class="testimonial-author-row">
+              <img src="images/FH7A8872.jpg" class="author-avatar" />
+            </div>
+            <p class="testimonial-text">
+              â€œFrom day one, they just got us. The brand we launched is bold,
+              fresh, and exactly what we needed to stand out. Our audience
+              responded instantly.â€
+            </p>
+            <p class="testimonial-author">
+              Lila Monroe<br />
+              Founder at Evolve Skincare
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="testimonial-card">
+            <div class="testimonial-author-row">
+              <img src="images/FH7A8872.jpg" class="author-avatar" />
+            </div>
+            <p class="testimonial-text">
+              â€œThey didnâ€™t just design a logoâ€”they built a brand we
+              believe in. Everything feels intentional and perfectly aligned
+              with our mission.â€
+            </p>
+            <p class="testimonial-author">
+              Maya Chen<br />
+              Creative Director at Grove
+            </p>
+          </div>
+
+          <div class="testimonial-card testimonial-large">
+            <img
+              class="testimonial-image"
+              src="images/FH7A8872.jpg"
+              alt="Client"
+            />
+
+            <p class="testimonial-text">
+              â€œWorking with this team was a game-changer. The strategy, the
+              visuals, the attention to detailâ€”it all came together
+              beautifully. We finally feel proud of how we show up.â€
+            </p>
+
+            <p class="testimonial-author">
+              Theo Gardner &nbsp;âœ¦&nbsp; Founder at North & Nest
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!----------------------------------------------- */ 
+    /* ARTICLES SECTION */
+    /* ----------------------------------------------->
+    <section class="articles-section">
+      <div class="articles-header">
+        <div class="articles-title">
+          <span class="badge">Articles</span>
+          <h2 class="reveal">
+            Our space to share stories that makes branding work
+          </h2>
+        </div>
+        <a href="#" class="all-articles-btn">All Articles</a>
+      </div>
+
+      <div class="articles-flex">
+        <!-- Left Large Article -->
+        <div class="article-large">
+          <img src="images/feature.jpg" alt="" />
+          <div class="article-large-info">
+            <h3>The Power of a Cohesive Visual Identity</h3>
+            <p class="meta">Brand Design â€¢ Feb 12, 2025</p>
+          </div>
+        </div>
+
+        <!-- Right Side Articles -->
+        <div class="small-cards">
+          <div class="article-card">
+            <div class="card-content">
+              <h4>Why Design Needs Direction</h4>
+              <p class="category">Brand Strategy</p>
+            </div>
+            <span class="arrow"
+              ><img src="images/arrow-up.svg" alt="arrow-up"
+            /></span>
+          </div>
+
+          <div class="article-card">
+            <div class="card-content">
+              <h4>Rebranding Without Losing Your Soul</h4>
+              <p class="category">Rebranding</p>
+            </div>
+            <span class="arrow"
+              ><img src="images/arrow-up.svg" alt="arrow-up"
+            /></span>
+          </div>
+
+          <div class="article-card">
+            <div class="card-content">
+              <h4>Building a Brand That Connects Emotionally</h4>
+              <p class="category">Brand Storytelling</p>
+            </div>
+            <span class="arrow"
+              ><img src="images/arrow-up.svg" alt="arrow-up"
+            /></span>
+          </div>
+
+          <div class="article-card">
+            <div class="card-content">
+              <h4>What Makes a Logo Timeless?</h4>
+              <p class="category">Logo Design</p>
+            </div>
+            <span class="arrow"
+              ><img src="images/arrow-up.svg" alt="arrow-up"
+            /></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!----------------------------------------------- */ 
+    /* FAQ SECTION */
+    /* ----------------------------------------------->
+    <section class="faq-section">
+      <div class="faq-left">
+        <span class="faq-tag">FAQs</span>
+        <h2 class="faq-title reveal">Answers to<br />your questions</h2>
+        <p class="faq-desc">
+          Curious about how we work, what to expect, or how to get started?
+          Weâ€™ve gathered some common questions to help you feel confident
+          before reaching out.
+        </p>
+      </div>
+
+      <div class="faq-right">
+        <div class="faq-item">
+          <button class="faq-header">
+            <p>What services do you offer?</p>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-content">
+            <p>
+              We offer a range of services including branding, web design,
+              UI/UX, and more.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-header">
+            <p>Can you help if we already have an existing brand?</p>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-content">
+            <p>
+              Absolutely! We can refine, expand, or refresh your current brand
+              identity.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-header">
+            <p>How do we get started working together?</p>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-content">
+            <p>
+              Start by reaching out to us and weâ€™ll guide you through our
+              onboarding process.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-header">
+            <p>How many revisions are included?</p>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-content">
+            <p>
+              Our standard package includes a set number of revisions depending
+              on the project.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-header">
+            <p>Will we be involved during the design process?</p>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-content">
+            <p>
+              Yes! We involve clients throughout the project to ensure
+              alignment.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-header">
+            <p>What if I only need a small project, like a logo?</p>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-content">
+            <p>
+              We accept small projects too, depending on our schedule
+              availability.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!----------------------------------------------- */ 
+    /* CTA SECTION */
+    /* ----------------------------------------------->
+    <section class="cta-section">
+      <h2 class="cta-title">
+        Great brands start with<br />
+        great conversations
+      </h2>
+
+      <p class="cta-subtitle">
+        If youâ€™re ready to build something meaningful, weâ€™d love to<br />
+        hear your story and explore whatâ€™s next together
+      </p>
+
+      <div class="cta-buttons">
+        <a href="#" class="btn-primary">Schedule a Call</a>
+        <a href="#" class="btn-secondary">Email Us</a>
+      </div>
+    </section>
+
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom: 20px">
+            <a href="index.html">
+              <img src="images/Akili studios white.png" alt="Logo" />
+            </a>
+          </div>
+          <p>
+            Capturing authentic stories through crafted visuals from portraits
+            to moments that matter.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li><a href="digital-marketing.html">Digital Marketing</a></li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Get in Touch</h4>
+          <p>sales@akilistudios.com</p>
+          <p>+256 761 656330<br />+256 784 247255<br />+256 700 228495</p>
+          <div class="social-links">
+            <a href="#" target="_blank"
+              ><img src="images/instagram.png" alt="Instagram"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/tik-tok.png" alt="TikTok"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/pinterest.png" alt="Pinterest"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/behance.png" alt="Behance"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/whatsapp.png" alt="WhatsApp"
+            /></a>
+          </div>
+          <p style="margin-top: 15px; font-size: 0.9rem; color: #aaa">
+            akilistudios
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Akili Studios. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- js scripts -->
+    <script src="/Home.js" defer></script>
+  </body>
+</html>

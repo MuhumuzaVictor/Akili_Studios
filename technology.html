@@ -1,0 +1,607 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Technology Solutions - Visual Storytelling Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Fonts removed -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Technology Page Specific Styles */
+      .technology-hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 20px;
+        text-align: center;
+        color: #fff;
+        background: linear-gradient(
+            to bottom,
+            rgba(26, 36, 53, 0.9),
+            rgba(26, 36, 53, 0.7)
+          ),
+          url("https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")
+            center / cover no-repeat;
+      }
+
+      .technology-hero h1 {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .technology-hero p {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .capabilities-section {
+        padding: 80px 0 100px;
+        background: #fff;
+      }
+
+      /* Panel Gallery Styles */
+      .panel-gallery {
+        display: flex;
+        width: 100%;
+        height: 80vh;
+        min-height: 600px;
+        overflow: hidden;
+        margin-bottom: 0;
+      }
+
+      .panel {
+        position: relative;
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
+        transition: flex 0.6s ease;
+        min-width: 60px;
+      }
+
+      .panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        transition: background 0.3s ease;
+      }
+
+      .panel:hover {
+        flex: 1.5;
+      }
+
+      .panel:hover::before {
+        background: rgba(0, 0, 0, 0.4);
+      }
+
+      .panel.active {
+        flex: 2;
+      }
+
+      .panel.active::before {
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      .panel-content {
+        position: absolute;
+        inset: 0;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        color: #fff;
+        z-index: 2;
+      }
+
+      .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .panel-title {
+        font-size: 1.2rem; /* Slightly smaller font for longer titles */
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 85%;
+      }
+
+      .panel-plus {
+        font-size: 1.5rem;
+        font-weight: 300;
+        transition: transform 0.3s ease;
+      }
+
+      .panel.active .panel-plus {
+        transform: rotate(45deg);
+      }
+
+      .panel-body {
+        flex: 0;
+        overflow: hidden;
+        transition: flex 0.5s ease, opacity 0.5s ease;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(5px);
+        border-radius: 8px;
+      }
+
+      .panel.active .panel-body {
+        flex: 1;
+        opacity: 1;
+        padding: 20px;
+      }
+
+      .panel-body p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0;
+        color: #fff;
+      }
+
+      .panel-body ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+      }
+
+      .panel-body ul li {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+        padding-left: 15px;
+        position: relative;
+      }
+
+      .panel-body ul li::before {
+        content: "â€¢";
+        position: absolute;
+        left: 0;
+        color: var(--primary-color);
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 100px 20px;
+        text-align: center;
+        background-color: var(--secondary-color);
+        color: #fff;
+      }
+
+      .cta-section .cta-title {
+        color: #fff;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .cta-section .cta-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/Akili studios black.png" alt="Logo" />
+        </a>
+      </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="index.html"
+            ><i class="fas fa-home"></i
+            ><span class="mobile-home-text">Home</span></a
+          >
+        </li>
+        <li class="dropdown">
+          <a href="index.html#services"
+            >Services
+            <i
+              class="fas fa-chevron-down"
+              style="font-size: 0.8em; margin-left: 5px"
+            ></i
+          ></a>
+          <ul class="dropdown-menu">
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li>
+              <a href="digital-marketing.html">Digital Marketing</a>
+            </li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </li>
+        <li><a href="our-work.html">Our Work</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="mobile-only"><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="technology-hero">
+      <h1>Technology Solutions</h1>
+      <p>
+        We design and build technology that empowers businesses to operate
+        efficiently, scale faster, and deliver exceptional experiences.
+      </p>
+    </section>
+
+    <!-- Capabilities Section -->
+    <section class="capabilities-section">
+      <div class="container" style="text-align: center; margin-bottom: 40px">
+        <div class="section-title" style="margin-bottom: 15px">
+          Our Technology Services
+        </div>
+        <p
+          style="
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+          "
+        >
+          Innovative solutions for the digital age.
+        </p>
+      </div>
+
+      <!-- First Row of 6 -->
+      <div class="panel-gallery" id="gallery-row-1">
+        <!-- Web & Software Development -->
+        <div
+          class="panel active"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Web & Software Dev</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>Custom systems tailored to your workflow and goals.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Website Design & Development -->
+        <div
+          class="panel"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Website Design</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>WordPress, Framer, and custom-coded solutions.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- E-commerce Development -->
+        <div
+          class="panel"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">E-commerce</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>WooCommerce, Shopify, and fully custom online stores.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile App Development -->
+        <div
+          class="panel"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Mobile Apps</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>Android, iOS, and cross-platform solutions.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- UI/UX Design -->
+        <div
+          class="panel"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1586717791821-3f44a5638d48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">UI/UX Design</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>
+                User-centered design for intuitive and delightful digital
+                experiences.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ERP Implementation -->
+        <div
+          class="panel"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">ERP Implementation</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>
+                Odoo, SAP, QuickBooks, Tally setup, customization, and training.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Row of 6 -->
+      <div class="panel-gallery" id="gallery-row-2">
+        <!-- Web Hosting & Domain Registration -->
+        <div
+          class="panel active"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1558494949-ef526b0042a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Web Hosting</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>Fast, secure, and reliable hosting solutions.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cloud Computing Solutions -->
+        <div
+          class="panel"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Cloud Computing</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>AWS, Azure, Google Cloud deployments and management.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CRM & Workflow Automation -->
+        <div
+          class="panel"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">CRM & Automation</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>Streamlining operations through intelligent automation.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI & Machine Learning Integration -->
+        <div
+          class="panel"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1555255707-c07966088b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">AI & Machine Learning</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>Smart tools that enhance efficiency and decision-making.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Backup & Disaster Recovery -->
+        <div
+          class="panel"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Data Backup</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>Protection and restoration of critical business data.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Digital Transformation Consulting -->
+        <div
+          class="panel"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Digital Transformation</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>
+                Guiding organizations through modernization and
+                efficiency-driven change.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <h2 class="cta-title">Ready to Modernize Your Business?</h2>
+      <p class="cta-subtitle">
+        Let's build the technology infrastructure you need to succeed.
+      </p>
+      <div class="cta-buttons">
+        <a href="index.html#contact" class="btn btn-primary"
+          >Get a Consultation</a
+        >
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom: 20px">
+            <a href="index.html">
+              <img src="images/Akili studios white.png" alt="Logo" />
+            </a>
+          </div>
+          <p>
+            Capturing authentic stories through crafted visuals from portraits
+            to moments that matter.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li>
+              <a href="digital-marketing.html">Digital Marketing</a>
+            </li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#careers">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html#privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Get in Touch</h4>
+          <p>sales@akilistudios.com</p>
+          <p>+256 761 656330<br />+256 784 247255<br />+256 700 228495</p>
+          <div class="social-links">
+            <a href="#" target="_blank"
+              ><img src="images/instagram.png" alt="Instagram"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/tik-tok.png" alt="TikTok"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/pinterest.png" alt="Pinterest"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/behance.png" alt="Behance"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/whatsapp.png" alt="WhatsApp"
+            /></a>
+          </div>
+          <p style="margin-top: 15px; font-size: 0.9rem; color: #aaa">
+            akilistudios
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Akili Studios. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Select panels from both rows
+      const panelsRow1 = document.querySelectorAll("#gallery-row-1 .panel");
+      const panelsRow2 = document.querySelectorAll("#gallery-row-2 .panel");
+
+      function setupPanelListeners(panels) {
+        panels.forEach((panel) => {
+          panel.addEventListener("click", () => {
+            removeActiveClasses(panels);
+            panel.classList.add("active");
+          });
+        });
+      }
+
+      function removeActiveClasses(panels) {
+        panels.forEach((panel) => {
+          panel.classList.remove("active");
+        });
+      }
+
+      setupPanelListeners(panelsRow1);
+      setupPanelListeners(panelsRow2);
+    </script>
+    <script src="Home.js"></script>
+  </body>
+</html>

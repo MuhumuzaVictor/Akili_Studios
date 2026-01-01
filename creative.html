@@ -1,0 +1,701 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Design - Visual Storytelling Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Fonts removed -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Creative Page Specific Styles */
+      .creative-hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 20px;
+        text-align: center;
+        color: #fff;
+        background: linear-gradient(
+            to bottom,
+            rgba(26, 36, 53, 0.9),
+            rgba(26, 36, 53, 0.7)
+          ),
+          url("https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")
+            center / cover no-repeat;
+      }
+
+      .creative-hero h1 {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .creative-hero p {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .capabilities-section {
+        padding: 80px 0 0;
+        background: #fff;
+      }
+
+      /* Panel Gallery Styles */
+      .panel-gallery {
+        display: flex;
+        width: 100%;
+        height: 80vh;
+        min-height: 600px;
+        overflow: hidden;
+      }
+
+      .panel {
+        position: relative;
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
+        transition: flex 0.6s ease;
+        min-width: 60px; /* Prevent collapsing too much */
+      }
+
+      .panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        transition: background 0.3s ease;
+      }
+
+      .panel:hover {
+        flex: 1.5;
+      }
+
+      .panel:hover::before {
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      .panel.active {
+        flex: 2;
+      }
+
+      .panel.active::before {
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .panel-content {
+        position: absolute;
+        inset: 0;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; /* Align text to bottom like photography page? Or top? Photography page had it top/flex-start but with a hidden body. Let's stick to the photography page structure. */
+        justify-content: flex-start;
+        color: #fff;
+        z-index: 2;
+      }
+
+      .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .panel-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 80%;
+      }
+
+      /* Hide title on inactive panels on small screens if needed, but flex handles it mostly. 
+         We might want to rotate text for inactive panels if there are too many. 
+         For 7 panels, vertical text might be better for inactive state, but let's stick to the requested style first.
+      */
+
+      .panel-plus {
+        font-size: 1.5rem;
+        font-weight: 300;
+        transition: transform 0.3s ease;
+      }
+
+      .panel.active .panel-plus {
+        transform: rotate(45deg);
+      }
+
+      .panel-body {
+        flex: 0;
+        overflow: hidden;
+        transition: flex 0.5s ease, opacity 0.5s ease;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(5px);
+        border-radius: 8px;
+      }
+
+      .panel.active .panel-body {
+        flex: 1; /* Takes up remaining space */
+        opacity: 1;
+        padding: 20px;
+      }
+
+      .panel-body p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 0;
+        color: #fff;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 100px 20px;
+        text-align: center;
+        background-color: var(--secondary-color);
+        color: #fff;
+      }
+
+      .cta-section .cta-title {
+        color: #fff;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .cta-section .cta-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 40px;
+      }
+
+      /* Creative Gallery */
+      .creative-gallery {
+        padding: 100px 20px;
+        background: #fff;
+      }
+
+      .gallery-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .gallery-header h2 {
+        font-size: 2.5rem;
+        color: var(--secondary-color);
+        margin-bottom: 15px;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-auto-rows: 250px;
+        grid-auto-flow: dense;
+        gap: 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        cursor: pointer;
+        height: 100%;
+      }
+
+      .gallery-item.wide {
+        grid-column: span 2;
+      }
+
+      .gallery-item.tall {
+        grid-row: span 2;
+      }
+
+      .gallery-item.big {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+
+      .gallery-item img,
+      .gallery-item video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .gallery-item:hover img,
+      .gallery-item:hover video {
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/Akili studios black.png" alt="Logo" />
+        </a>
+      </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="index.html"
+            ><i class="fas fa-home"></i
+            ><span class="mobile-home-text">Home</span></a
+          >
+        </li>
+        <li class="dropdown">
+          <a href="index.html#services"
+            >Services
+            <i
+              class="fas fa-chevron-down"
+              style="font-size: 0.8em; margin-left: 5px"
+            ></i
+          ></a>
+          <ul class="dropdown-menu">
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li>
+              <a href="digital-marketing.html">Digital Marketing</a>
+            </li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </li>
+        <li><a href="our-work.html">Our Work</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="mobile-only"><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="creative-hero">
+      <h1>Creative Design</h1>
+      <p>
+        We help brands communicate clearly, beautifully, and strategically. From
+        visual identity to marketing materials, we design with intention and
+        consistency.
+      </p>
+    </section>
+
+    <!-- Capabilities Section -->
+    <section class="capabilities-section">
+      <div class="container" style="text-align: center; margin-bottom: 40px">
+        <div class="section-title" style="margin-bottom: 15px">
+          Our Creative Capabilities
+        </div>
+        <p
+          style="
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+          "
+        >
+          Comprehensive design solutions tailored to elevate your brand's visual
+          identity.
+        </p>
+      </div>
+
+      <div class="panel-gallery">
+        <!-- Branding & Design -->
+        <div
+          class="panel active"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Branding & Design</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>
+                Building memorable and cohesive brand systems that stand out in
+                the market.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marketing Collateral -->
+        <div
+          class="panel fade-in-up"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1586717791821-3f44a5638d48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Marketing Collateral</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>
+                Brochures, flyers, business cards, pitch decks, and more
+                designed to impress.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logo Design -->
+        <div
+          class="panel fade-in-up"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1626785774573-4b799312c95d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Logo Design</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>
+                Unique and timeless logos crafted to represent your brandâ€™s
+                essence perfectly.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Corporate Identity -->
+        <div
+          class="panel fade-in-up"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1493421419110-74f4e30dd697?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Corporate Identity</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>
+                Complete brand kits and guidelines for long-term consistency
+                across all media.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Media Content -->
+        <div
+          class="panel fade-in-up"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Social Media</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>
+                Eye-catching graphics, motion visuals, and content calendars to
+                grow your audience.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Ads -->
+        <div
+          class="panel fade-in-up"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Video Ads</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>
+                High-impact visual storytelling for digital platforms that
+                drives conversions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Brand Strategy -->
+        <div
+          class="panel fade-in-up"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+          "
+        >
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-title">Brand Strategy</div>
+              <div class="panel-plus"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="panel-body">
+              <p>
+                Positioning, messaging, and long-term brand roadmap for
+                sustainable growth.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <h2 class="cta-title">Ready to Elevate Your Brand?</h2>
+      <p class="cta-subtitle">
+        Let's create something that truly represents your vision.
+      </p>
+      <div class="cta-buttons">
+        <a href="index.html#contact" class="btn btn-primary">Start a Project</a>
+      </div>
+    </section>
+
+    <!-- Creative Gallery Section -->
+    <section class="creative-gallery">
+      <div class="gallery-header">
+        <h2>Our Recent Work</h2>
+        <p style="color: var(--text-light)">
+          A showcase of our latest creative projects.
+        </p>
+      </div>
+      <div class="gallery-grid">
+        <!-- 19 Gallery Items with Varied Sizes -->
+        <div class="gallery-item fade-in-up big">
+          <img
+            src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 1"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 2"
+          />
+        </div>
+        <div class="gallery-item fade-in-up tall">
+          <img
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 3"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <video
+            src="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+        </div>
+        <div class="gallery-item fade-in-up wide">
+          <img
+            src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 5"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 6"
+          />
+        </div>
+        <div class="gallery-item fade-in-up tall">
+          <img
+            src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 7"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 8"
+          />
+        </div>
+        <div class="gallery-item fade-in-up big">
+          <video
+            src="https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1586717791821-3f44a5638d48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 10"
+          />
+        </div>
+        <div class="gallery-item fade-in-up wide">
+          <img
+            src="https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 11"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1626785774573-4b799312c95d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 12"
+          />
+        </div>
+        <div class="gallery-item fade-in-up tall">
+          <img
+            src="https://images.unsplash.com/photo-1493421419110-74f4e30dd697?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 13"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 14"
+          />
+        </div>
+        <div class="gallery-item fade-in-up wide">
+          <video
+            src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 16"
+          />
+        </div>
+        <div class="gallery-item fade-in-up big">
+          <img
+            src="https://images.unsplash.com/photo-1542744094-24638eff58bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 17"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 18"
+          />
+        </div>
+        <div class="gallery-item fade-in-up wide">
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 19"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom: 20px">
+            <a href="index.html">
+              <img src="images/Akili studios white.png" alt="Logo" />
+            </a>
+          </div>
+          <p>
+            Capturing authentic stories through crafted visuals from portraits
+            to moments that matter.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li>
+              <a href="digital-marketing.html">Digital Marketing</a>
+            </li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#careers">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html#privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Get in Touch</h4>
+          <p>sales@akilistudios.com</p>
+          <p>+256 761 656330<br />+256 784 247255<br />+256 700 228495</p>
+          <div class="social-links">
+            <a href="#" target="_blank"
+              ><img src="images/instagram.png" alt="Instagram"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/tik-tok.png" alt="TikTok"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/pinterest.png" alt="Pinterest"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/behance.png" alt="Behance"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/whatsapp.png" alt="WhatsApp"
+            /></a>
+          </div>
+          <p style="margin-top: 15px; font-size: 0.9rem; color: #aaa">
+            akilistudios
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Akili Studios. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      const panels = document.querySelectorAll(".panel");
+
+      panels.forEach((panel) => {
+        panel.addEventListener("click", () => {
+          removeActiveClasses();
+          panel.classList.add("active");
+        });
+      });
+
+      function removeActiveClasses() {
+        panels.forEach((panel) => {
+          panel.classList.remove("active");
+        });
+      }
+    </script>
+    <script src="Home.js"></script>
+  </body>
+</html>

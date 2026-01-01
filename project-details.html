@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Details - Akili Studios</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .project-details-hero {
+        height: 60vh;
+        min-height: 400px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        color: #fff;
+      }
+
+      .project-details-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      }
+
+      .hero-content-wrapper {
+        position: relative;
+        z-index: 2;
+        padding: 0 100px 60px;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .project-meta {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.9;
+      }
+
+      .project-title {
+        font-size: 4rem;
+        font-weight: 700;
+        margin: 0;
+        line-height: 1.1;
+      }
+
+      .project-content-section {
+        padding: 80px 100px;
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 60px;
+      }
+
+      .content-block {
+        margin-bottom: 40px;
+      }
+
+      .content-block h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: var(--secondary-color);
+      }
+
+      .content-block p {
+        color: var(--text-light);
+        line-height: 1.8;
+        font-size: 1.1rem;
+      }
+
+      .sidebar-info {
+        background: var(--bg-light);
+        padding: 40px;
+        border-radius: 12px;
+        height: fit-content;
+      }
+
+      .info-group {
+        margin-bottom: 30px;
+      }
+
+      .info-group h3 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        color: var(--secondary-color);
+      }
+
+      .info-group ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .info-group li {
+        margin-bottom: 8px;
+        color: var(--text-light);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .info-group li i {
+        color: var(--primary-color);
+        font-size: 0.8rem;
+      }
+
+      .project-gallery {
+        padding: 0 100px 80px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 20px;
+      }
+
+      .gallery-img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 12px;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-img:hover {
+        transform: scale(1.02);
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-weight: 600;
+        margin-bottom: 30px;
+        transition: color 0.3s ease;
+      }
+
+      .back-link:hover {
+        color: var(--primary-color);
+      }
+
+      @media (max-width: 900px) {
+        .project-details-hero {
+          height: 50vh;
+        }
+        .hero-content-wrapper {
+          padding: 0 30px 40px;
+        }
+        .project-title {
+          font-size: 2.5rem;
+        }
+        .project-content-section {
+          padding: 60px 30px;
+          grid-template-columns: 1fr;
+        }
+        .project-gallery {
+          padding: 0 30px 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/Akili studios black.png" alt="Logo" />
+        </a>
+      </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="index.html#home"
+            ><i class="fas fa-home"></i
+            ><span class="mobile-home-text">Home</span></a
+          >
+        </li>
+        <li class="dropdown">
+          <a href="index.html#services"
+            >Services
+            <i
+              class="fas fa-chevron-down"
+              style="font-size: 0.8em; margin-left: 5px"
+            ></i
+          ></a>
+          <ul class="dropdown-menu">
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li><a href="digital-marketing.html">Digital Marketing</a></li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </li>
+        <li><a href="our-work.html">Our Work</a></li>
+        <li>
+          <a href="projects.html" style="color: var(--accent-color)"
+            >Projects</a
+          >
+        </li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="mobile-only"><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+    </nav>
+
+    <!-- Dynamic Content Container -->
+    <div id="project-container">
+      <!-- Content will be injected here -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom: 20px">
+            <a href="index.html">
+              <img src="images/Akili studios white.png" alt="Logo" />
+            </a>
+          </div>
+          <p>
+            Capturing authentic stories through crafted visuals from portraits
+            to moments that matter.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li><a href="digital-marketing.html">Digital Marketing</a></li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Get in Touch</h4>
+          <p>sales@akilistudios.com</p>
+          <p>+256 761 656330<br />+256 784 247255<br />+256 700 228495</p>
+          <div class="social-links">
+            <a href="#" target="_blank"
+              ><img src="images/instagram.png" alt="Instagram"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/tik-tok.png" alt="TikTok"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/pinterest.png" alt="Pinterest"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/behance.png" alt="Behance"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/whatsapp.png" alt="WhatsApp"
+            /></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Akili Studios. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="projects-data.js"></script>
+    <script src="Home.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get("id");
+
+        if (!projectId) {
+          window.location.href = "projects.html";
+          return;
+        }
+
+        const project = projectsData.find((p) => p.id === projectId);
+
+        if (!project) {
+          document.getElementById("project-container").innerHTML =
+            '<div style="padding: 100px; text-align: center;"><h1>Project not found</h1><a href="projects.html" class="btn btn-primary">Back to Projects</a></div>';
+          return;
+        }
+
+        // Update Page Title
+        document.title = `${project.title} - Akili Studios`;
+
+        // Build HTML
+        const html = `
+          <header class="project-details-hero" style="background-image: url('${
+            project.heroImage
+          }')">
+            <div class="hero-content-wrapper">
+              <div class="project-meta">
+                <span>${project.category}</span>
+                <span>•</span>
+                <span>${project.date}</span>
+              </div>
+              <h1 class="project-title fade-in-up">${project.title}</h1>
+            </div>
+          </header>
+
+          <section class="project-content-section">
+            <div class="main-content">
+              <a href="projects.html" class="back-link fade-in-up delay-200">
+                <i class="fas fa-arrow-left"></i> Back to Projects
+              </a>
+              
+              <div class="content-block fade-in-up delay-200">
+                <h2>Overview</h2>
+                <p>${project.overview}</p>
+              </div>
+              
+              <div class="content-block fade-in-up delay-200">
+                <h2>The Challenge</h2>
+                <p>${project.challenge}</p>
+              </div>
+
+              <div class="content-block fade-in-up delay-200">
+                <h2>The Solution</h2>
+                <p>${project.solution}</p>
+              </div>
+
+              <div class="content-block fade-in-up delay-200">
+                <h2>The Results</h2>
+                <p>${project.results}</p>
+              </div>
+            </div>
+
+            <aside class="sidebar-info fade-in-up delay-400">
+              <div class="info-group">
+                <h3>Client</h3>
+                <p>${project.client}</p>
+              </div>
+              
+              <div class="info-group">
+                <h3>Services Provided</h3>
+                <ul>
+                  ${project.services
+                    .map(
+                      (service) =>
+                        `<li><i class="fas fa-check"></i> ${service}</li>`
+                    )
+                    .join("")}
+                </ul>
+              </div>
+            </aside>
+          </section>
+
+          <section class="project-gallery fade-in-up delay-400">
+            <div class="gallery-grid">
+              ${project.gallery
+                .map(
+                  (img) =>
+                    `<img src="${img}" alt="${project.title} Gallery" class="gallery-img">`
+                )
+                .join("")}
+            </div>
+          </section>
+        `;
+
+        document.getElementById("project-container").innerHTML = html;
+      });
+    </script>
+  </body>
+</html>

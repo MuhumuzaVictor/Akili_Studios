@@ -1,0 +1,942 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Work - Visual Storytelling Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Fonts removed -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Our Work Page Specific Styles */
+      .work-hero {
+        background-color: #fff;
+        padding: 120px 20px 60px;
+        text-align: center;
+        color: var(--secondary-color);
+      }
+
+      .work-hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .work-hero p {
+        font-size: 1.2rem;
+        color: var(--text-light);
+        max-width: 800px;
+        margin: 0 auto 40px;
+      }
+
+      .work-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 60px;
+        flex-wrap: wrap;
+      }
+
+      .tab-btn {
+        padding: 12px 30px;
+        border: 2px solid var(--secondary-color);
+        background: transparent;
+        color: var(--secondary-color);
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .tab-btn:hover,
+      .tab-btn.active {
+        background: var(--secondary-color);
+        color: #fff;
+      }
+
+      .work-content {
+        display: none;
+        padding: 0 20px 80px;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .work-content.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Reuse styles from other pages */
+
+      /* Masonry Grid (Photography) */
+      .masonry-grid {
+        column-count: 3;
+        column-gap: 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .masonry-item img {
+        width: 100%;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .masonry-item:hover img {
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 900px) {
+        .masonry-grid {
+          column-count: 2;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .masonry-grid {
+          column-count: 1;
+        }
+      }
+
+      /* Panel Gallery (Creative) */
+      .panel-gallery {
+        display: flex;
+        width: 100%;
+        height: 80vh;
+        min-height: 600px;
+        overflow: hidden;
+        max-width: 1400px;
+        margin: 0 auto;
+        border-radius: 12px;
+      }
+
+      .panel {
+        position: relative;
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
+        transition: flex 0.6s ease;
+        min-width: 60px;
+      }
+
+      .panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        transition: background 0.3s ease;
+      }
+
+      .panel:hover {
+        flex: 1.5;
+      }
+
+      .panel:hover::before {
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      .panel.active {
+        flex: 2;
+      }
+
+      .panel.active::before {
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .panel-content {
+        position: absolute;
+        inset: 0;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        color: #fff;
+        z-index: 2;
+      }
+
+      .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .panel-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 80%;
+      }
+
+      .panel-plus {
+        font-size: 1.5rem;
+        font-weight: 300;
+        transition: transform 0.3s ease;
+      }
+
+      .panel.active .panel-plus {
+        transform: rotate(45deg);
+      }
+
+      .panel-body {
+        flex: 0;
+        overflow: hidden;
+        transition: flex 0.5s ease, opacity 0.5s ease;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(5px);
+        border-radius: 8px;
+      }
+
+      .panel.active .panel-body {
+        flex: 1;
+        opacity: 1;
+        padding: 20px;
+      }
+
+      .panel-body p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 0;
+        color: #fff;
+      }
+
+      /* Videography Grid */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-auto-rows: 250px;
+        grid-auto-flow: dense;
+        gap: 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        cursor: pointer;
+        height: 100%;
+      }
+
+      .gallery-item.wide {
+        grid-column: span 2;
+      }
+
+      .gallery-item.tall {
+        grid-row: span 2;
+      }
+
+      .gallery-item.big {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+
+      .gallery-item img,
+      .gallery-item video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .gallery-item:hover img,
+      .gallery-item:hover video {
+        transform: scale(1.1);
+      }
+
+      .website-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 2;
+      }
+
+      .gallery-item:hover .website-overlay {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/Akili studios black.png" alt="Logo" />
+        </a>
+      </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="index.html"
+            ><i class="fas fa-home"></i
+            ><span class="mobile-home-text">Home</span></a
+          >
+        </li>
+        <li class="dropdown">
+          <a href="index.html#services"
+            >Services
+            <i
+              class="fas fa-chevron-down"
+              style="font-size: 0.8em; margin-left: 5px"
+            ></i
+          ></a>
+          <ul class="dropdown-menu">
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li>
+              <a href="digital-marketing.html">Digital Marketing</a>
+            </li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="our-work.html" style="color: var(--accent-color)"
+            >Our Work</a
+          >
+        </li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="mobile-only"><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="work-hero">
+      <h1>Our Work</h1>
+      <p>
+        Explore our diverse portfolio showcasing our expertise in Photography,
+        Creative Design, and Videography.
+      </p>
+
+      <div class="work-tabs">
+        <button class="tab-btn active" data-tab="photography">
+          Photography
+        </button>
+        <button class="tab-btn" data-tab="creative">Creative Design</button>
+        <button class="tab-btn" data-tab="videography">Videography</button>
+        <button class="tab-btn" data-tab="websites">Websites</button>
+      </div>
+    </section>
+
+    <!-- Photography Content -->
+    <div id="photography" class="work-content active">
+      <div class="masonry-grid">
+        <!-- Portrait -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Portrait"
+          />
+        </div>
+
+        <!-- Landscape -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Landscape"
+          />
+        </div>
+
+        <!-- Tall Portrait -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Tall Portrait"
+          />
+        </div>
+
+        <!-- Square -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Square"
+          />
+        </div>
+
+        <!-- Landscape -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Fashion"
+          />
+        </div>
+
+        <!-- Portrait -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Male Portrait"
+          />
+        </div>
+
+        <!-- Landscape -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Nature"
+          />
+        </div>
+
+        <!-- Tall -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Work"
+          />
+        </div>
+
+        <!-- Square -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Motorcycle"
+          />
+        </div>
+
+        <!-- Portrait -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1534083264897-aeabfc750150?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Watch"
+          />
+        </div>
+
+        <!-- Landscape -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Food"
+          />
+        </div>
+
+        <!-- Tall -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Fashion Model"
+          />
+        </div>
+
+        <!-- Square -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1520390138845-fd2d229dd552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Wedding"
+          />
+        </div>
+
+        <!-- Architecture -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Architecture"
+          />
+        </div>
+
+        <!-- Street -->
+        <div class="masonry-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1478186172006-0253d2743e58?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Street Photography"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Creative Design Content -->
+    <div id="creative" class="work-content">
+      <div class="gallery-grid">
+        <!-- 19 Gallery Items with Varied Sizes -->
+        <div class="gallery-item fade-in-up big">
+          <img
+            src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 1"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 2"
+          />
+        </div>
+        <div class="gallery-item fade-in-up tall">
+          <img
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 3"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <video
+            src="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+        </div>
+        <div class="gallery-item fade-in-up wide">
+          <img
+            src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 5"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 6"
+          />
+        </div>
+        <div class="gallery-item fade-in-up tall">
+          <img
+            src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 7"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 8"
+          />
+        </div>
+        <div class="gallery-item fade-in-up big">
+          <video
+            src="https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1586717791821-3f44a5638d48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 10"
+          />
+        </div>
+        <div class="gallery-item fade-in-up wide">
+          <img
+            src="https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 11"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1626785774573-4b799312c95d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 12"
+          />
+        </div>
+        <div class="gallery-item fade-in-up tall">
+          <img
+            src="https://images.unsplash.com/photo-1493421419110-74f4e30dd697?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 13"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 14"
+          />
+        </div>
+        <div class="gallery-item fade-in-up wide">
+          <video
+            src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 16"
+          />
+        </div>
+        <div class="gallery-item fade-in-up big">
+          <img
+            src="https://images.unsplash.com/photo-1542744094-24638eff58bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 17"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Work 18"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Videography Content -->
+    <div id="videography" class="work-content">
+      <div class="gallery-grid">
+        <div class="gallery-item fade-in-up big">
+          <video
+            src="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1579165466741-7f35e4755652?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Video Work 2"
+          />
+        </div>
+        <div class="gallery-item fade-in-up tall">
+          <img
+            src="https://images.unsplash.com/photo-1601506521937-24620312934a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Video Work 3"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <video
+            src="https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+        </div>
+        <div class="gallery-item fade-in-up wide">
+          <img
+            src="https://images.unsplash.com/photo-1535016120720-40c6874c3b13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Video Work 5"
+          />
+        </div>
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Video Work 6"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Websites Content -->
+    <div id="websites" class="work-content">
+      <div class="gallery-grid">
+        <!-- Website 1 -->
+        <div class="gallery-item fade-in-up wide">
+          <img
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="E-commerce Platform"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 2 -->
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1481487484168-9b995ecc168d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Portfolio Site"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 3 -->
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Blog Template"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 4 -->
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Corporate Site"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 5 -->
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Landing Page"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 6 -->
+        <div class="gallery-item fade-in-up wide">
+          <img
+            src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Web App Interface"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 7 -->
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Tech Startup"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 8 -->
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Creative Agency"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 9 -->
+        <div class="gallery-item fade-in-up tall">
+          <img
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="SaaS Dashboard"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 10 -->
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Mobile App Landing"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 11 -->
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Digital Platform"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 12 -->
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1519222970733-f546218fa6d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Portfolio"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 13 -->
+        <div class="gallery-item fade-in-up wide">
+          <img
+            src="https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Tech Blog"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 14 -->
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Mobile Interface"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 15 -->
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Social Network"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+
+        <!-- Website 16 -->
+        <div class="gallery-item fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="CMS Dashboard"
+          />
+          <div class="website-overlay">
+            <a href="#" class="btn btn-primary">Visit Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom: 20px">
+            <a href="index.html">
+              <img src="images/Akili studios white.png" alt="Logo" />
+            </a>
+          </div>
+          <p>
+            Capturing authentic stories through crafted visuals from portraits
+            to moments that matter.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li>
+              <a href="digital-marketing.html">Digital Marketing</a>
+            </li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html#careers">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html#privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Get in Touch</h4>
+          <p>sales@akilistudios.com</p>
+          <p>+256 761 656330<br />+256 784 247255<br />+256 700 228495</p>
+          <div class="social-links">
+            <a href="#" target="_blank"
+              ><img src="images/instagram.png" alt="Instagram"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/tik-tok.png" alt="TikTok"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/pinterest.png" alt="Pinterest"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/behance.png" alt="Behance"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/whatsapp.png" alt="WhatsApp"
+            /></a>
+          </div>
+          <p style="margin-top: 15px; font-size: 0.9rem; color: #aaa">
+            akilistudios
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Akili Studios. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="Home.js"></script>
+    <script>
+      // Tab Switching Logic
+      const tabBtns = document.querySelectorAll(".tab-btn");
+      const workContents = document.querySelectorAll(".work-content");
+
+      tabBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // Remove active class from all buttons and contents
+          tabBtns.forEach((b) => b.classList.remove("active"));
+          workContents.forEach((c) => c.classList.remove("active"));
+
+          // Add active class to clicked button
+          btn.classList.add("active");
+
+          // Show corresponding content
+          const tabId = btn.getAttribute("data-tab");
+          document.getElementById(tabId).classList.add("active");
+        });
+      });
+
+      // Panel Gallery Interaction (for Creative tab)
+      document.querySelectorAll(".panel-plus").forEach((plus) => {
+        plus.addEventListener("click", (e) => {
+          e.stopPropagation(); // Prevent panel click if any
+          const panel = plus.closest(".panel");
+
+          // Close other panels
+          document.querySelectorAll(".panel").forEach((p) => {
+            if (p !== panel) p.classList.remove("active");
+          });
+
+          // Toggle current panel
+          panel.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
+</html>
