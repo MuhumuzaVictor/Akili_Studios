@@ -286,6 +286,44 @@
       .gallery-item:hover .website-overlay {
         opacity: 1;
       }
+
+      @media (max-width: 768px) {
+        /* Panel Gallery Mobile */
+        .panel-gallery {
+          flex-direction: column;
+          height: auto;
+          overflow: visible;
+          border-radius: 0;
+          gap: 20px;
+        }
+
+        .panel {
+          width: 100%;
+          height: 300px;
+          flex: none !important;
+          border-radius: 12px;
+          margin-bottom: 0;
+        }
+
+        /* Gallery Grid Mobile */
+        .gallery-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .gallery-item.wide,
+        .gallery-item.tall,
+        .gallery-item.big {
+          grid-column: auto;
+          grid-row: auto;
+        }
+
+        .gallery-item {
+          height: 300px;
+          width: 100%;
+        }
+      }
     </style>
   </head>
   <body>

@@ -43,6 +43,12 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   font-family: "Bomstad Display", sans-serif;
   color: var(--text-color);
@@ -122,9 +128,9 @@ ul {
 }
 
 .btn-outline:hover {
-  border-color: var(--accent-color);
-  background: var(--tertiary-color);
-  color: var(--accent-color);
+  background: var(--secondary-color);
+  color: #fff;
+  border-color: var(--secondary-color);
 }
 
 /* Navbar */
@@ -132,12 +138,19 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
-  position: sticky;
+  padding: 15px 40px;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 95%;
+  max-width: 1200px;
   background: rgba(255, 255, 255, 0.95);
   z-index: 1000;
   backdrop-filter: blur(5px);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .logo-icon {
@@ -233,7 +246,7 @@ ul {
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 60px 100px 40px;
+  padding: 150px 100px 40px;
   position: relative;
   overflow: hidden;
   min-height: 100vh;
@@ -573,7 +586,7 @@ ul {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 30px;
   text-align: center;
-  color: #666;
+  color: #fff;
   font-size: 14px;
 }
 
@@ -1587,6 +1600,35 @@ ul {
   background: #f3f3f3;
 }
 
+/* Responsive CTA */
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 60px 20px;
+  }
+
+  .cta-title {
+    font-size: 32px;
+  }
+
+  .cta-subtitle {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .cta-buttons .btn-primary,
+  .cta-buttons .btn-secondary {
+    width: auto;
+    min-width: 200px;
+    text-align: center;
+  }
+}
+
 /* Animations */
 @keyframes fadeInUp {
   from {
@@ -1961,6 +2003,15 @@ ul {
     display: block;
   }
 
+  .navbar {
+    background: #ffffff;
+    top: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    padding: 15px 20px;
+  }
+
   /* Hide the standalone Contact Us button on mobile */
   .navbar > .btn-primary {
     display: none;
@@ -1978,13 +2029,13 @@ ul {
     right: -100%; /* Hidden by default */
     width: 100%;
     height: 100vh;
-    background: rgba(255, 255, 255, 0.98);
+    background: #ffffff;
     backdrop-filter: blur(10px);
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     padding: 25px 30px; /* Align with hamburger */
-    gap: 30px;
+    gap: 20px;
     transition: right 0.4s ease;
     z-index: 1000;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
@@ -2024,6 +2075,10 @@ ul {
 
   .nav-links a {
     font-size: 1.2rem;
+    color: #666;
+  }
+
+  .nav-links a:hover {
     color: var(--secondary-color);
   }
 
@@ -2039,7 +2094,7 @@ ul {
     padding-left: 20px; /* Indent sub-items */
     text-align: left;
     margin-top: 15px;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: none;
   }
 
   /* Show dropdown when active class is added via JS */
@@ -2063,6 +2118,11 @@ ul {
     color: #666;
   }
 
+  .dropdown-menu a:hover {
+    background: transparent;
+    color: var(--secondary-color);
+  }
+
   /* Rotate chevron when active */
   .dropdown.active > a i {
     transform: rotate(180deg);
@@ -2076,8 +2136,7 @@ ul {
 
 @media (max-width: 768px) {
   .mobile-home-text {
-    display: inline;
-    margin-left: 10px;
+    display: none;
   }
 
   /* Optional: Hide the home icon on mobile if they only want text */
@@ -2090,7 +2149,6 @@ ul {
   color: inherit;
   display: block;
 }
-
 
 /* Brand Logos (Moved from about.html) */
 .brands-section {
@@ -2133,4 +2191,3 @@ ul {
   opacity: 1;
   color: var(--secondary-color);
 }
-
