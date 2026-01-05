@@ -54,6 +54,7 @@ body {
   color: var(--text-color);
   background-color: #fff;
   line-height: 1.6;
+  letter-spacing: 1px;
 }
 
 a {
@@ -879,6 +880,19 @@ ul {
   height: 340px;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+/* Specific style for Henhar and Uvotam logos to prevent overfilling */
+a[href*="henhar"] .project-image img,
+a[href*="uvotam"] .project-image img {
+  object-fit: contain;
+  padding: 40px;
+  background-color: #f5f5f5; /* Optional: adds a light background if logo is transparent */
 }
 
 .project-footer {
@@ -2190,4 +2204,126 @@ ul {
 .brand-logo:hover {
   opacity: 1;
   color: var(--secondary-color);
+}
+
+/* Lightbox Modal */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 900px;
+  max-height: 80vh;
+  object-fit: contain;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  z-index: 2001;
+}
+
+.close-lightbox:hover,
+.close-lightbox:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Mobile adjustments for lightbox */
+@media only screen and (max-width: 700px) {
+  .lightbox-content {
+    width: 100%;
+  }
+}
+
+/* Lightbox Navigation Arrows */
+.lightbox-prev,
+.lightbox-next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 2002;
+}
+
+/* Position the 'next' button to the right */
+.lightbox-next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* Position the 'prev' button to the left */
+.lightbox-prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Mobile adjustments for arrows */
+@media only screen and (max-width: 700px) {
+  .lightbox-prev,
+  .lightbox-next {
+    font-size: 30px;
+    padding: 12px;
+  }
+}
+
+/* Active state for nav links */
+.nav-links a.active {
+  color: var(--accent-color);
 }

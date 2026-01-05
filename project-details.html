@@ -312,10 +312,14 @@
         document.title = `${project.title} - Akili Studios`;
 
         // Build HTML
+        const isLogoProject =
+          project.id === "henhar" || project.id === "uvotam";
+        const heroStyle = isLogoProject
+          ? `background-image: url('${project.heroImage}'); background-size: contain; background-repeat: no-repeat; background-color: #ffffff;`
+          : `background-image: url('${project.heroImage}')`;
+
         const html = `
-          <header class="project-details-hero" style="background-image: url('${
-            project.heroImage
-          }')">
+          <header class="project-details-hero" style="${heroStyle}">
             <div class="hero-content-wrapper">
               <div class="project-meta">
                 <span>${project.category}</span>
@@ -331,12 +335,12 @@
               <a href="projects.html" class="back-link fade-in-up delay-200">
                 <i class="fas fa-arrow-left"></i> Back to Projects
               </a>
-              
+
               <div class="content-block fade-in-up delay-200">
                 <h2>Overview</h2>
                 <p>${project.overview}</p>
               </div>
-              
+
               <div class="content-block fade-in-up delay-200">
                 <h2>The Challenge</h2>
                 <p>${project.challenge}</p>
@@ -358,7 +362,7 @@
                 <h3>Client</h3>
                 <p>${project.client}</p>
               </div>
-              
+
               <div class="info-group">
                 <h3>Services Provided</h3>
                 <ul>

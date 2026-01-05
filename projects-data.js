@@ -97,4 +97,54 @@ const projectsData = [
       "The campaign generated over 500 new leads and a 20% increase in membership sign-ups compared to the previous year.",
     gallery: ["images/FH7A8872.jpg", "images/FH7A8872.jpg"],
   },
+  {
+    id: "henhar",
+    title: "Henhar Services",
+    category: "Web Design & Social Media",
+    heroImage: "images/Henhar_logo.png",
+    client: "Henhar Services",
+    date: "July 2025",
+    overview:
+      "Henhar Services required a comprehensive digital transformation to establish their online presence. We developed a new website, set up their organizational email infrastructure, and took charge of their social media channels to build brand awareness.",
+    challenge:
+      "The brand lacked a cohesive online identity and needed a professional platform to showcase their services. Managing multiple social media platforms and creating consistent, high-quality content was a resource strain they needed to offload.",
+    solution:
+      "We designed and developed a custom website and set up professional emails. We implemented a robust social media strategy covering Instagram, X, and TikTok, which includes designing custom weekly posters, content editing, and active community management.",
+    services: [
+      "Website Design & Development",
+      "Social Media Management",
+      "Custom Weekly Posters",
+      "Content Editing",
+      "Email Setup & Configuration",
+      "Online Presence Management",
+    ],
+    results:
+      "Established a professional digital footprint with a fully functional website and active social media presence, leading to increased brand visibility and engagement.",
+    gallery: ["images/FH7A8872.jpg", "images/FH7A8872.jpg"],
+  },
+  {
+    id: "uvotam",
+    title: "Uvotam Studios",
+    category: "Podcast Branding & Production",
+    heroImage: "images/BFAALogo_final.png",
+    client: "Uvotam Studios",
+    date: "May 2025",
+    overview:
+      "Uvotam Studios needed a strong visual and auditory identity for their podcast launch. We provided a complete branding package including logo design, social media assets, and audio production elements.",
+    challenge:
+      "Launching a new podcast requires standing out in a crowded market. Uvotam needed a distinctive look and feel that would attract listeners across various platforms, along with professional-grade audio branding.",
+    solution:
+      "We designed a unique podcast logo and created a suite of social media assets including covers, profile pictures, and engaging thumbnails. Additionally, we produced a custom podcast intro to ensure a professional listening experience from the very first second.",
+    services: [
+      "Podcast Logo Design",
+      "Podcast Intro Production",
+      "Thumbnail Design",
+      "Social Media Covers",
+      "Profile Pictures",
+      "Brand Identity",
+    ],
+    results:
+      "The podcast launched with a polished, professional brand identity that resonated with the target audience, helping to drive initial subscriber growth and engagement.",
+    gallery: ["images/FH7A8872.jpg", "images/FH7A8872.jpg"],
+  },
 ];

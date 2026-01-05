@@ -11,6 +11,15 @@
 			"isBackground": false,
 			"problemMatcher": [],
 			"group": "build"
+		},
+		{
+			"label": "append_css_active",
+			"type": "shell",
+			"command": "echo \"\n/* Active state for nav links */\n.nav-links a.active {\n  color: var(--accent-color);\n}\n\" >> c:\\Users\\HP\\ucs\\style.css",
+			"args": [
+				"c:\\Users\\HP\\ucs\\style.css"
+			],
+			"group": "build"
 		}
 	]
 }

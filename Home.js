@@ -387,3 +387,110 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// Lightbox Functionality
+document.addEventListener("DOMContentLoaded", () => {
+  const lightbox = document.getElementById("lightbox");
+  if (!lightbox) return;
+
+  const lightboxImg = document.getElementById("lightbox-img");
+  const captionText = document.getElementById("caption");
+  const closeBtn = document.querySelector(".close-lightbox");
+  const prevBtn = document.querySelector(".lightbox-prev");
+  const nextBtn = document.querySelector(".lightbox-next");
+
+  // Select all images in gallery grids and masonry items
+  // Convert NodeList to Array for easier indexing
+  const images = Array.from(
+    document.querySelectorAll(".gallery-item img, .masonry-item img")
+  );
+  let currentIndex = 0;
+
+  function showImage(index) {
+    if (index >= images.length) {
+      currentIndex = 0;
+    } else if (index < 0) {
+      currentIndex = images.length - 1;
+    } else {
+      currentIndex = index;
+    }
+
+    const img = images[currentIndex];
+    lightboxImg.src = img.src;
+    captionText.innerHTML = img.alt || "";
+  }
+
+  images.forEach((img, index) => {
+    img.style.cursor = "pointer";
+    img.addEventListener("click", function () {
+      lightbox.style.display = "block";
+      currentIndex = index;
+      showImage(currentIndex);
+      document.body.style.overflow = "hidden"; // Prevent scrolling
+    });
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function () {
+      lightbox.style.display = "none";
+      document.body.style.overflow = ""; // Restore scrolling
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", function (e) {
+      e.stopPropagation(); // Prevent closing lightbox
+      showImage(currentIndex - 1);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", function (e) {
+      e.stopPropagation(); // Prevent closing lightbox
+      showImage(currentIndex + 1);
+    });
+  }
+
+  // Close on outside click
+  lightbox.addEventListener("click", function (e) {
+    if (e.target === lightbox) {
+      lightbox.style.display = "none";
+      document.body.style.overflow = ""; // Restore scrolling
+    }
+  });
+
+  // Keyboard Navigation
+  document.addEventListener("keydown", function (e) {
+    if (lightbox.style.display === "block") {
+      if (e.key === "Escape") {
+        lightbox.style.display = "none";
+        document.body.style.overflow = "";
+      } else if (e.key === "ArrowLeft") {
+        showImage(currentIndex - 1);
+      } else if (e.key === "ArrowRight") {
+        showImage(currentIndex + 1);
+      }
+    }
+  });
+});
+
+(function highlightActiveService() {
+  const currentPath = window.location.pathname;
+  const servicePages = [
+    'photography.html',
+    'videography.html',
+    'creative.html',
+    'digital-marketing.html',
+    'technology.html'
+  ];
+
+  const isServicePage = servicePages.some(page => currentPath.includes(page));
+
+  if (isServicePage) {
+    const servicesLink = document.querySelector('.dropdown > a');
+    if (servicesLink) {
+      servicesLink.classList.add('active');
+    }
+  }
+})();
+
