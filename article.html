@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article - Akili Studios</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/Akili studios black.png" alt="Logo" />
+        </a>
+      </div>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="index.html#home"
+            ><i class="fas fa-home"></i
+            ><span class="mobile-home-text">Home</span></a
+          >
+        </li>
+        <li class="dropdown">
+          <a href="index.html#services"
+            >Services<i
+              class="fas fa-chevron-down"
+              style="font-size: 0.8em; margin-left: 5px"
+            ></i
+          ></a>
+          <ul class="dropdown-menu">
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li><a href="digital-marketing.html">Digital Marketing</a></li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </li>
+        <li><a href="our-work.html">Our Work</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="mobile-only"><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+    </nav>
+
+    <!-- Article Hero -->
+    <header class="article-hero">
+      <div class="container">
+        <div class="article-meta">
+          <span id="article-category" class="article-category"></span>
+          <span id="article-date" class="article-date"></span>
+        </div>
+        <h1 id="article-title" class="article-title">Loading...</h1>
+        <!-- Subtitle could be part of data, or just removed if not in data -->
+        <!-- <p class="article-subtitle">...</p> -->
+      </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="article-content">
+      <div id="article-body" class="container article-container">
+        <!-- Content will be injected here -->
+      </div>
+    </article>
+
+    <!-- Related Articles - Could be dynamic, but static for now is simpler to check structure -->
+    <section class="related-articles section bg-light">
+      <div class="container">
+        <h2 class="section-title">Read Next</h2>
+        <div class="articles-flex" id="related-articles-container">
+          <!-- Related articles injected via JS -->
+          <p style="text-align: center; width: 100%">
+            Loading related articles...
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="logo" style="margin-bottom: 20px">
+            <a href="index.html">
+              <img src="images/Akili studios white.png" alt="Logo" />
+            </a>
+          </div>
+          <p>
+            Capturing authentic stories through crafted visuals from portraits
+            to moments that matter.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="photography.html">Photography</a></li>
+            <li><a href="videography.html">Videography</a></li>
+            <li><a href="creative.html">Creative</a></li>
+            <li><a href="digital-marketing.html">Digital Marketing</a></li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Get in Touch</h4>
+          <p>sales@akilistudios.com</p>
+          <p>+256 761 656330<br />+256 784 247255<br />+256 700 228495</p>
+          <div class="social-links">
+            <a href="#" target="_blank"
+              ><img src="images/instagram.png" alt="Instagram"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/tik-tok.png" alt="TikTok"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/pinterest.png" alt="Pinterest"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/behance.png" alt="Behance"
+            /></a>
+            <a href="#" target="_blank"
+              ><img src="images/whatsapp.png" alt="WhatsApp"
+            /></a>
+          </div>
+          <p style="margin-top: 15px; font-size: 0.9rem; color: #aaa">
+            akilistudios
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Akili Studios. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="articles-data.js"></script>
+    <script src="article.js"></script>
+    <script src="Home.js"></script>
+  </body>
+</html>

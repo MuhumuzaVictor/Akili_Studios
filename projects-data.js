@@ -40,7 +40,7 @@ const projectsData = [
     challenge:
       "Entering a crowded market with a new product required a unique value proposition and a clear communication strategy.",
     solution:
-      "We conducted market research and competitor analysis to identify gaps. We crafted a brand strategy that highlighted Nestrow's unique features and created a launch campaign.",
+      "We conducted market research and competitor analysis to identify gaps. We crafted a brand strategy that highlighted Nestrow&rsquo;s unique features and created a launch campaign.",
     services: [
       "Market Research",
       "Brand Strategy",
@@ -146,5 +146,23 @@ const projectsData = [
     results:
       "The podcast launched with a polished, professional brand identity that resonated with the target audience, helping to drive initial subscriber growth and engagement.",
     gallery: ["images/FH7A8872.jpg", "images/FH7A8872.jpg"],
+  },
+  {
+    id: "peekaboo-preschool",
+    title: "Peekaboo Preschool",
+    category: "Video Production",
+    heroImage: "images/peekaboo logo.png",
+    client: "Peekaboo Preschool",
+    date: "January 2024",
+    overview:
+      "We collaborated with Peekaboo Preschool to create engaging video content showcasing their learning environment.",
+    challenge:
+      "The preschool needed to highlight their facilities, learning materials, and the happy environment for the kids to attract new parents.",
+    solution:
+      "We recorded and edited video ads featuring the school premises, kids learning, learning materials used, and the play area.",
+    services: ["Video Recording", "Video Editing", "Ad Production"],
+    results:
+      "High-quality video ads that effectively showcase the preschool's environment and offerings.",
+    gallery: ["images/peekaboo logo.png"],
   },
 ];

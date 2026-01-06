@@ -150,7 +150,7 @@ ul {
   background: rgba(255, 255, 255, 0.95);
   z-index: 1000;
   backdrop-filter: blur(5px);
-  border-radius: 16px;
+  border-radius: 0 0 16px 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
@@ -644,7 +644,7 @@ ul {
 }
 
 .stats-image-section .container {
-  background-image: url("images/FH7A8872.jpg");
+  background-image: url("images/growth.jpg");
   background-size: cover;
   background-position: center;
   border-radius: 20px;
@@ -1188,8 +1188,8 @@ a[href*="uvotam"] .project-image img {
 
 /* Avatar / image at top-left for small cards */
 .testimonial-card .author-avatar {
-  width: 46px;
-  height: 46px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 0; /* no extra space, top-left */
@@ -1274,8 +1274,8 @@ a[href*="uvotam"] .project-image img {
 
 /* Avatar for cards 2 & 3 */
 .testimonial-card:not(.testimonial-large) .author-avatar {
-  width: 46px; /* avatar size */
-  height: 46px;
+  width: 80px; /* avatar size */
+  height: 80px;
   border-radius: 6px; /* small rounded corners */
   object-fit: cover; /* cover the container without distortion */
   margin-bottom: 15px;
@@ -1367,7 +1367,7 @@ a[href*="uvotam"] .project-image img {
   left: 0;
   right: 0;
   padding: 18px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  background: linear-gradient(to top, rgba(6, 57, 47, 0.9), transparent);
   color: white;
 }
 
@@ -1422,13 +1422,18 @@ a[href*="uvotam"] .project-image img {
   font-size: 14px;
 }
 
-.arrow img {
+.arrow i {
   position: absolute;
   right: 18px;
   top: 18px;
   width: 30px;
   height: 30px;
-  color: #9a9a9a;
+  color: var(--secondary-color);
+  font-size: 20px;
+  transform: rotate(45deg); /* To make arrow-up point diagonal */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Responsive */
@@ -2326,4 +2331,230 @@ a[href*="uvotam"] .project-image img {
 /* Active state for nav links */
 .nav-links a.active {
   color: var(--accent-color);
+}
+
+/* Article Details Page Styles */
+.article-hero {
+  padding: 160px 0 60px;
+  text-align: center;
+  background-color: var(--bg-light);
+}
+
+.article-meta {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.article-category {
+  color: var(--primary-color);
+  margin-right: 15px;
+}
+
+.article-title {
+  font-size: 3rem; /* Large title */
+  line-height: 1.2;
+  margin-bottom: 20px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.article-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.article-hero-image {
+  width: 100%;
+  height: 60vh; /* Prominent image */
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.article-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-content {
+  padding: 80px 0;
+}
+
+.article-container {
+  max-width: 800px; /* Narrower for readability */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.article-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  color: var(--text-color);
+}
+
+.article-content .lead-text {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--accent-color);
+}
+
+.article-content h2 {
+  font-size: 2rem;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  color: var(--secondary-color);
+}
+
+.article-content h3 {
+  font-size: 1.5rem;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.article-content ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin-bottom: 30px;
+}
+
+.article-content li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.article-content blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 30px;
+  margin: 40px 0;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--secondary-color);
+}
+
+/* Related Articles Card Link Fix */
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.article-card:hover .card-link {
+  color: inherit;
+}
+
+/* Article Details Page Styles */
+.article-hero {
+  padding: 160px 0 60px;
+  text-align: center;
+  background-color: var(--bg-light);
+}
+
+.article-meta {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.article-category {
+  color: var(--primary-color);
+  margin-right: 15px;
+}
+
+.article-title {
+  font-size: 3rem; /* Large title */
+  line-height: 1.2;
+  margin-bottom: 20px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.article-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.article-hero-image {
+  width: 100%;
+  height: 60vh; /* Prominent image */
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.article-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-content {
+  padding: 80px 0;
+}
+
+.article-container {
+  max-width: 800px; /* Narrower for readability */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.article-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  color: var(--text-color);
+}
+
+.article-content .lead-text {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--accent-color);
+}
+
+.article-content h2 {
+  font-size: 2rem;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  color: var(--secondary-color);
+}
+
+.article-content h3 {
+  font-size: 1.5rem;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.article-content ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin-bottom: 30px;
+}
+
+.article-content li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.article-content blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 30px;
+  margin: 40px 0;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--secondary-color);
 }

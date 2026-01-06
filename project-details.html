@@ -254,9 +254,7 @@
           <h4>Company</h4>
           <ul>
             <li><a href="about.html">About Us</a></li>
-            <li><a href="#careers">Careers</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="#privacy">Privacy Policy</a></li>
           </ul>
         </div>
 
@@ -313,7 +311,9 @@
 
         // Build HTML
         const isLogoProject =
-          project.id === "henhar" || project.id === "uvotam";
+          project.id === "henhar" ||
+          project.id === "uvotam" ||
+          project.id === "peekaboo-preschool";
         const heroStyle = isLogoProject
           ? `background-image: url('${project.heroImage}'); background-size: contain; background-repeat: no-repeat; background-color: #ffffff;`
           : `background-image: url('${project.heroImage}')`;
