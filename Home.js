@@ -477,20 +477,27 @@ document.addEventListener("DOMContentLoaded", () => {
 (function highlightActiveService() {
   const currentPath = window.location.pathname;
   const servicePages = [
-    'photography.html',
-    'videography.html',
-    'creative.html',
-    'digital-marketing.html',
-    'technology.html'
+    "photography.html",
+    "videography.html",
+    "creative.html",
+    "digital-marketing.html",
+    "technology.html",
   ];
 
-  const isServicePage = servicePages.some(page => currentPath.includes(page));
+  const isServicePage = servicePages.some((page) => currentPath.includes(page));
 
   if (isServicePage) {
-    const servicesLink = document.querySelector('.dropdown > a');
+    const servicesLink = document.querySelector(".dropdown > a");
     if (servicesLink) {
-      servicesLink.classList.add('active');
+      servicesLink.classList.add("active");
     }
   }
 })();
 
+(function updateCopyrightYear() {
+  const footerPara = document.querySelector(".footer-bottom p");
+  if (footerPara) {
+    const currentYear = new Date().getFullYear();
+    footerPara.innerHTML = `&copy; ${currentYear} Akili Studios. All rights reserved.`;
+  }
+})();
